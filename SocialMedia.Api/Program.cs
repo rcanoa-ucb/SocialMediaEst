@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
+using SocialMedia.Infrastructure.Repositories;
 
 namespace SocialMedia.Api
 {
@@ -22,8 +24,13 @@ namespace SocialMedia.Api
 
 
             // Add services to the container.
+            builder.Services.AddTransient<IPostRepository, PostRepository>();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
 
             var app = builder.Build();
 
