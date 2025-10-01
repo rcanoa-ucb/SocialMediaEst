@@ -33,6 +33,7 @@ namespace SocialMedia.Api
             // Inyectar las dependencias
             builder.Services.AddTransient<IPostRepository, PostRepository>();
             builder.Services.AddTransient<IPostService, PostService>();
+            builder.Services.AddTransient<IUserRepository, UserRepository>();
 
             // Add services to the container.
             builder.Services.AddControllers().AddNewtonsoftJson(options =>

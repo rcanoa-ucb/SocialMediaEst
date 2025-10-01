@@ -11,9 +11,12 @@ namespace SocialMedia.Core.Services
     public class PostService : IPostService
     {
         public readonly IPostRepository _postRepository;
-        public PostService(IPostRepository postRepository) 
+        public readonly IUserRepository _userRepository;
+        public PostService(IPostRepository postRepository, 
+            IUserRepository userRepository) 
         {
             _postRepository = postRepository;
+            _userRepository = userRepository;
         }
         public async Task<IEnumerable<Post>> GetAllPostAsync()
         {
@@ -27,6 +30,12 @@ namespace SocialMedia.Core.Services
 
         public async Task InsertPostAsync(Post post)
         {
+            var user = await _userRepository.GetUserByIdAsync(post.UserId);
+            if (user == null)
+            {
+                throw new Exception("El usuario no existe");
+            }
+
             await _postRepository.InsertPostAsync(post);
         }
 
