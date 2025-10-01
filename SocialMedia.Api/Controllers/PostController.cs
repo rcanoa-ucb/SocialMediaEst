@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SocialMedia.Core.CustomEntities;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.DTOs;
 using SocialMedia.Infrastructure.Validators;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SocialMedia.Api.Controllers
 {
@@ -16,14 +14,14 @@ namespace SocialMedia.Api.Controllers
     {
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
-        private readonly IValidationService _validatorService;
+        private readonly IValidationService _validationService;
         public PostController(IPostRepository postRepository,
             IMapper mapper,
             IValidationService validationService)
         {
             _postRepository = postRepository;
             _mapper = mapper;
-            _validatorService = validationService;
+            _validationService = validationService;
         }
 
         #region Sin DTOs
@@ -58,7 +56,7 @@ namespace SocialMedia.Api.Controllers
             {
                 Id = p.Id,
                 UserId = p.UserId,
-                Date = p.Date,
+                Date = p.Date.ToString("dd-MM-yyyy"),
                 Description = p.Description,
                 Imagen = p.Imagen
             });
@@ -74,7 +72,7 @@ namespace SocialMedia.Api.Controllers
             {
                 Id = post.Id,
                 UserId = post.UserId,
-                Date = post.Date,
+                Date = post.Date.ToString("dd-MM-yyyy"),
                 Description = post.Description,
                 Imagen = post.Imagen
             };
@@ -89,7 +87,7 @@ namespace SocialMedia.Api.Controllers
             {
                 Id = postDto.Id,
                 UserId = postDto.UserId,
-                Date = postDto.Date,
+                Date = Convert.ToDateTime(postDto.Date),
                 Description = postDto.Description,
                 Imagen = postDto.Imagen
             };
@@ -111,7 +109,7 @@ namespace SocialMedia.Api.Controllers
 
             post.Id = postDto.Id;
             post.UserId = postDto.UserId;
-            post.Date = postDto.Date;
+            post.Date = Convert.ToDateTime(postDto.Date);
             post.Description = postDto.Description;
             post.Imagen = postDto.Imagen;
 
@@ -144,6 +142,20 @@ namespace SocialMedia.Api.Controllers
         [HttpGet("dto/mapper/{id}")]
         public async Task<IActionResult> GetPostsDtoMapperId(int id)
         {
+            #region Validaciones
+            var validationRequest = new GetByIdRequest { Id = id };
+            var validationResult = await _validationService.ValidateAsync(validationRequest);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(new
+                {
+                    Message = "Error de validación del ID",
+                    Errors = validationResult.Errors
+                });
+            }
+            #endregion
+
             var post = await _postRepository.GetPostAsync(id);
             var postDto = _mapper.Map<PostDto>(post);
 
@@ -151,16 +163,18 @@ namespace SocialMedia.Api.Controllers
         }
 
         [HttpPost("dto/mapper/")]
-        public async Task<IActionResult> InsertPostDtoMapper(PostDto postDto)
-        { 
-            //Validaciones
-            var validationResult = await _validatorService
-                .ValidateAsync(postDto);
+        public async Task<IActionResult> InsertPostDtoMapper([FromBody]PostDto postDto)
+        {
+            #region Validaciones
+            // La validación automática se hace mediante el filtro
+            // Esta validación manual es opcional
+            var validationResult = await _validationService.ValidateAsync(postDto);
+
             if (!validationResult.IsValid)
             {
-                return BadRequest(new 
-                { Error = validationResult.Errors });
+                return BadRequest(new { Errors = validationResult.Errors });
             }
+            #endregion
 
             var post = _mapper.Map<Post>(postDto);
             await _postRepository.InsertPostAsync(post);

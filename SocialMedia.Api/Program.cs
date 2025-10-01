@@ -1,8 +1,12 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
+using SocialMedia.Infrastructure.DTOs;
+using SocialMedia.Infrastructure.Filters;
 using SocialMedia.Infrastructure.Mappings;
 using SocialMedia.Infrastructure.Repositories;
+using SocialMedia.Infrastructure.Validators;
 
 namespace SocialMedia.Api
 {
@@ -25,14 +29,30 @@ namespace SocialMedia.Api
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-            // Add services to the container.
+            // Inyectar las dependencias
             builder.Services.AddTransient<IPostRepository, PostRepository>();
 
-            builder.Services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
+            // Add services to the container.
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }).ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+            //Validaciones
+            builder.Services.AddControllers(options =>
+            {
+                options.Filters.Add<ValidationFilter>();
+            });
+
+            // FluentValidation
+            builder.Services.AddValidatorsFromAssemblyContaining<PostDtoValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<GetByIdRequestValidator>();
+
+            // Services
+            builder.Services.AddScoped<IValidationService, ValidationService>();
 
             var app = builder.Build();
 
