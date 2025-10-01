@@ -1,6 +1,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Core.Interfaces;
+using SocialMedia.Core.Services;
 using SocialMedia.Infrastructure.Data;
 using SocialMedia.Infrastructure.DTOs;
 using SocialMedia.Infrastructure.Filters;
@@ -31,6 +32,7 @@ namespace SocialMedia.Api
 
             // Inyectar las dependencias
             builder.Services.AddTransient<IPostRepository, PostRepository>();
+            builder.Services.AddTransient<IPostService, PostService>();
 
             // Add services to the container.
             builder.Services.AddControllers().AddNewtonsoftJson(options =>
