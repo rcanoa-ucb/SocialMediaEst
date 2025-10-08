@@ -36,6 +36,11 @@ namespace SocialMedia.Core.Services
                 throw new Exception("El usuario no existe");
             }
 
+            if (post.Description.ToLower().Contains("odio".ToLower()))
+            {
+                throw new Exception("El contenido no es permitido");
+            }
+
             await _postRepository.InsertPostAsync(post);
         }
 

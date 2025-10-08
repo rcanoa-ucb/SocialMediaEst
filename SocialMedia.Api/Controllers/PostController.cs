@@ -6,6 +6,7 @@ using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.DTOs;
 using SocialMedia.Infrastructure.Validators;
+using System.Net;
 
 namespace SocialMedia.Api.Controllers
 {
@@ -170,23 +171,30 @@ namespace SocialMedia.Api.Controllers
         [HttpPost("dto/mapper/")]
         public async Task<IActionResult> InsertPostDtoMapper([FromBody]PostDto postDto)
         {
-            #region Validaciones
-            // La validación automática se hace mediante el filtro
-            // Esta validación manual es opcional
-            var validationResult = await _validationService.ValidateAsync(postDto);
-
-            if (!validationResult.IsValid)
+            try
             {
-                return BadRequest(new { Errors = validationResult.Errors });
+                #region Validaciones
+                // La validación automática se hace mediante el filtro
+                // Esta validación manual es opcional
+                var validationResult = await _validationService.ValidateAsync(postDto);
+
+                if (!validationResult.IsValid)
+                {
+                    return BadRequest(new { Errors = validationResult.Errors });
+                }
+                #endregion
+
+                var post = _mapper.Map<Post>(postDto);
+                await _postService.InsertPostAsync(post);
+
+                var response = new ApiResponse<Post>(post);
+
+                return Ok(response);
             }
-            #endregion
-
-            var post = _mapper.Map<Post>(postDto);
-            await _postService.InsertPostAsync(post);
-
-            var response = new ApiResponse<Post>(post);
-
-            return Ok(response);
+            catch (Exception err)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, err.Message);
+            }
         }
 
         [HttpPut("dto/mapper/{id}")]

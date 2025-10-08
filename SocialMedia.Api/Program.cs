@@ -18,14 +18,14 @@ namespace SocialMedia.Api
             var builder = WebApplication.CreateBuilder(args);
 
             #region Configurar la BD SqlServer
-            var connectionString = builder.Configuration.GetConnectionString("ConnectionSqlServer");
-            builder.Services.AddDbContext<SocialMediaContext>(options => options.UseSqlServer(connectionString));
+            //var connectionString = builder.Configuration.GetConnectionString("ConnectionSqlServer");
+            //builder.Services.AddDbContext<SocialMediaContext>(options => options.UseSqlServer(connectionString));
             #endregion
 
             #region Configurar la BD MySql
-            //var connectionString = builder.Configuration.GetConnectionString("ConnectionMySql");
-            //builder.Services.AddDbContext<SocialMediaContext>(options =>
-            //    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            var connectionString = builder.Configuration.GetConnectionString("ConnectionMySql");
+            builder.Services.AddDbContext<SocialMediaContext>(options =>
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
             #endregion
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
