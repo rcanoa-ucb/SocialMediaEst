@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SocialMedia.Core.Entities;
 
-public partial class Post
+public partial class Post : BaseEntity
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
 
     public int UserId { get; set; }
 

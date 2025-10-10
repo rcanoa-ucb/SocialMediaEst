@@ -1,5 +1,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
+using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Core.Services;
 using SocialMedia.Infrastructure.Data;
@@ -31,9 +33,10 @@ namespace SocialMedia.Api
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // Inyectar las dependencias
-            builder.Services.AddTransient<IPostRepository, PostRepository>();
+            //builder.Services.AddTransient<IPostRepository, PostRepository>();
             builder.Services.AddTransient<IPostService, PostService>();
-            builder.Services.AddTransient<IUserRepository, UserRepository>();
+            //builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             // Add services to the container.
             builder.Services.AddControllers().AddNewtonsoftJson(options =>

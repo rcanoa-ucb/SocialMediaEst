@@ -13,6 +13,6 @@ namespace SocialMedia.Core.Interfaces
         Task<Post> GetPostAsync(int id);
         Task InsertPostAsync(Post post);
         Task UpdatePostAsync(Post post);
-        Task DeletePostAsync(Post post);
+        Task DeletePostAsync(int id);
     }
 }
