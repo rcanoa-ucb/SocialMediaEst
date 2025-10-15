@@ -37,6 +37,7 @@ namespace SocialMedia.Api
             builder.Services.AddTransient<IPostService, PostService>();
             //builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             // Add services to the container.
             builder.Services.AddControllers().AddNewtonsoftJson(options =>

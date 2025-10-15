@@ -11,31 +11,38 @@ namespace SocialMedia.Core.Services
     public class PostService : IPostService
     {
         //public readonly IPostRepository _postRepository;
-        public readonly IBaseRepository<Post> _postRepository;
+        //public readonly IBaseRepository<Post> _postRepository;
         //public readonly IUserRepository _userRepository;
-        public readonly IBaseRepository<User> _userRepository;
+        //public readonly IBaseRepository<User> _userRepository;
+
+        public readonly IUnitOfWork _unitOfWork;
+
         public PostService(
             //IPostRepository postRepository, 
             //IUserRepository userRepository) 
-            IBaseRepository<Post> postRepository,
-            IBaseRepository<User> userRepository)
+            //IBaseRepository<Post> postRepository,
+            //IBaseRepository<User> userRepository,
+            IUnitOfWork unitOfWork)
         {
-            _postRepository = postRepository;
-            _userRepository = userRepository;
+            //_postRepository = postRepository;
+            //_userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
         public async Task<IEnumerable<Post>> GetAllPostAsync()
         {
-            return await _postRepository.GetAll();
+            //return await _postRepository.GetAll();
+            return await _unitOfWork.PostRepository.GetAll();
         }
 
         public async Task<Post> GetPostAsync(int id)
         {
-            return await _postRepository.GetById(id);
+            //return await _postRepository.GetById(id);
+            return await _unitOfWork.PostRepository.GetById(id);
         }
 
         public async Task InsertPostAsync(Post post)
         {
-            var user = await _userRepository.GetById(post.UserId);
+            var user = await _unitOfWork.UserRepository.GetById(post.UserId);
             if (user == null)
             {
                 throw new Exception("El usuario no existe");
@@ -46,16 +53,16 @@ namespace SocialMedia.Core.Services
                 throw new Exception("El contenido no es permitido");
             }
 
-            await _postRepository.Add(post);
+            await _unitOfWork.PostRepository.Add(post);
         }
 
         public async Task UpdatePostAsync(Post post)
         {
-            await _postRepository.Update(post);
+            await _unitOfWork.PostRepository.Update(post);
         }
         public async Task DeletePostAsync(int id)
         {
-            await _postRepository.Delete(id);
+            await _unitOfWork.PostRepository.Delete(id);
         }
 
         //Lista de palabras no permitidas
