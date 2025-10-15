@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace SocialMedia.Core.Interfaces
 {
-    public interface IPostRepository
+    public interface IPostRepository : IBaseRepository<Post>
     {
-        Task<IEnumerable<Post>> GetAllPostAsync();
-        Task<Post> GetPostAsync(int id);
-        Task InsertPostAsync(Post post);
-        Task UpdatePostAsync(Post post);
-        Task DeletePostAsync(Post post);
+        Task<IEnumerable<Post>> GetAllPostByUserAsync(int idUser);
+        //Task<IEnumerable<Post>> GetAllPostAsync();
+        //Task<Post> GetPostAsync(int id);
+        //Task InsertPostAsync(Post post);
+        //Task UpdatePostAsync(Post post);
+        //Task DeletePostAsync(Post post);
     }
 }
