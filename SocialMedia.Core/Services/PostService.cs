@@ -1,5 +1,7 @@
 ﻿using SocialMedia.Core.Entities;
+using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Interfaces;
+using SocialMedia.Core.QueryFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +30,28 @@ namespace SocialMedia.Core.Services
             //_userRepository = userRepository;
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Post>> GetAllPostAsync()
+        public async Task<IEnumerable<Post>> GetAllPostAsync(
+            PostQueryFilter postQueryFilter)
         {
+            var posts = await _unitOfWork.PostRepository.GetAll();
+            if (postQueryFilter.userId != null)
+            {
+                posts = posts.Where(a => a.UserId == postQueryFilter.userId);
+            }
+            if (postQueryFilter.Date != null)
+            {
+                posts = posts.Where(x => x.Date.ToShortDateString() ==
+                postQueryFilter.Date?.ToShortDateString());
+            }
+            if (postQueryFilter.Description != null)
+            {
+                posts = posts.Where(x =>
+                x.Description.ToLower().Contains(postQueryFilter.Description.ToLower()));
+            }
+
             //return await _postRepository.GetAll();
-            return await _unitOfWork.PostRepository.GetAll();
+            //return await _unitOfWork.PostRepository.GetAll();
+            return posts;
         }
 
         public async Task<Post> GetPostAsync(int id)
@@ -45,23 +65,23 @@ namespace SocialMedia.Core.Services
             var user = await _unitOfWork.UserRepository.GetById(post.UserId);
             if (user == null)
             {
-                throw new Exception("El usuario no existe");
+                throw new BussinesException("El usuario no existe");
             }
 
             if (ContainsForbiddenWord(post.Description))
             {
-                throw new Exception("El contenido no es permitido");
+                throw new BussinesException("El contenido no es permitido");
             }
             //Si el usuario tiene menos de 10 publicaciones,
             //solo puede publicar 1 sola vez por semana
             var userPost = await _unitOfWork.PostRepository
                 .GetAllPostByUserAsync(post.UserId);
-            if (userPost.Count() < 10)
+            if (userPost.Count() < 7)
             {
                 var lastPost = userPost.OrderByDescending(x => x.Date).FirstOrDefault();
                 if ((DateTime.Now - lastPost.Date).TotalDays < 7)
                 {
-                    throw new Exception("No puedes publicar el post");
+                    throw new BussinesException("No puedes publicar el post");
                 }
             }
 

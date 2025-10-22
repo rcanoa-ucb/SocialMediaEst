@@ -1,4 +1,5 @@
 ﻿using SocialMedia.Core.Entities;
+using SocialMedia.Core.QueryFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SocialMedia.Core.Interfaces
 {
     public interface IPostService
     {
-        Task<IEnumerable<Post>> GetAllPostAsync();
+        Task<IEnumerable<Post>> GetAllPostAsync(PostQueryFilter postQueryFilter);
         Task<Post> GetPostAsync(int id);
         Task InsertPostAsync(Post post);
         Task UpdatePostAsync(Post post);

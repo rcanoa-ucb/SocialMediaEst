@@ -40,7 +40,10 @@ namespace SocialMedia.Api
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             // Add services to the container.
-            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            builder.Services.AddControllers(options =>
+            {
+                options.Filters.Add<GlobalExceptionFilter>();
+            }).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             }).ConfigureApiBehaviorOptions(options =>
