@@ -1,4 +1,5 @@
-﻿using SocialMedia.Core.Entities;
+﻿using SocialMedia.Core.CustomEntities;
+using SocialMedia.Core.Entities;
 using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Core.QueryFilters;
@@ -57,6 +58,13 @@ namespace SocialMedia.Core.Services
         public async Task<IEnumerable<Post>> GetAllPostDapperAsync()
         {
             var posts = await _unitOfWork.PostRepository.GetAllPostDapperAsync(5);
+
+            return posts;
+        }
+
+        public async Task<IEnumerable<PostComentariosUsersResponse>> GetPostCommentUserAsync()
+        {
+            var posts = await _unitOfWork.PostRepository.GetPostCommentUserAsync();
 
             return posts;
         }

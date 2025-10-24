@@ -1,4 +1,5 @@
-﻿using SocialMedia.Core.Entities;
+﻿using SocialMedia.Core.CustomEntities;
+using SocialMedia.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace SocialMedia.Core.Interfaces
     {
         Task<IEnumerable<Post>> GetAllPostByUserAsync(int idUser);
         Task<IEnumerable<Post>> GetAllPostDapperAsync(int limit = 10);
+        Task<IEnumerable<PostComentariosUsersResponse>> GetPostCommentUserAsync();
         //Task<Post> GetPostAsync(int id);
         //Task InsertPostAsync(Post post);
         //Task UpdatePostAsync(Post post);

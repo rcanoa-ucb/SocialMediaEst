@@ -156,6 +156,17 @@ namespace SocialMedia.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet("dapper/1")]
+        public async Task<IActionResult> GetPostCommentUserAsync()
+        {
+            var posts = await _postService.GetPostCommentUserAsync();
+           
+
+            var response = new ApiResponse<IEnumerable<PostComentariosUsersResponse>>(posts);
+
+            return Ok(response);
+        }
+
         [HttpGet("dto/mapper/{id}")]
         public async Task<IActionResult> GetPostsDtoMapperId(int id)
         {

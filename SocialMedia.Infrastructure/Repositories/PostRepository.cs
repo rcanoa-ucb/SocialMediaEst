@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SocialMedia.Core.CustomEntities;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Enum;
 using SocialMedia.Core.Interfaces;
@@ -36,6 +37,20 @@ namespace SocialMedia.Infrastructure.Repositories
                 };
 
                 return await _dapper.QueryAsync<Post>(sql, new { Limit = limit });
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
+
+        public async Task<IEnumerable<PostComentariosUsersResponse>> GetPostCommentUserAsync()
+        {
+            try
+            {
+                var sql = PostQueries.PostComentadosUsuariosActivos;
+
+                return await _dapper.QueryAsync<PostComentariosUsersResponse>(sql);
             }
             catch (Exception err)
             {

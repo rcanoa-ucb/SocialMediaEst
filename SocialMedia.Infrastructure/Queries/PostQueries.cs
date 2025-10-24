@@ -19,5 +19,18 @@ namespace SocialMedia.Infrastructure.Queries
                         order by Date desc
                         LIMIT @Limit
                     ";
+        public static string PostComentadosUsuariosActivos = @"
+                        SELECT 
+                        p.Id AS PostId,
+                        p.Description,
+                        COUNT(c.Id) AS TotalComentarios
+                    FROM Post p
+                    JOIN Comment c ON p.Id = c.PostId
+                    JOIN User u ON c.UserId = u.Id
+                    WHERE u.IsActive = 1        
+                    GROUP BY p.Id, p.Description
+                    HAVING COUNT(c.Id) > 2
+                    ORDER BY TotalComentarios DESC;            
+                    ";
     }
 }
