@@ -145,6 +145,17 @@ namespace SocialMedia.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet("dto/dapper")]
+        public async Task<IActionResult> GetPostsDtoMapper()
+        {
+            var posts = await _postService.GetAllPostDapperAsync();
+            var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
+
+            var response = new ApiResponse<IEnumerable<PostDto>>(postsDto);
+
+            return Ok(response);
+        }
+
         [HttpGet("dto/mapper/{id}")]
         public async Task<IActionResult> GetPostsDtoMapperId(int id)
         {

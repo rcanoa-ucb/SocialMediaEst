@@ -1,9 +1,11 @@
 ﻿using SocialMedia.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace SocialMedia.Core.Interfaces
 {
@@ -15,5 +17,12 @@ namespace SocialMedia.Core.Interfaces
         void SaveChanges();
         Task SaveChangesAsync();
 
+        Task BeginTransaccionAsync();
+        Task CommitAsync();
+        Task RollbackAsync();
+
+        //Nuevos miembros de Dapper
+        IDbConnection? GetDbConnection();
+        IDbTransaction? GetDbTransaction();
     }
 }

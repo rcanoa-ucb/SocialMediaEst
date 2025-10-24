@@ -38,6 +38,8 @@ namespace SocialMedia.Api
             //builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
+            builder.Services.AddScoped<IDapperContext, DapperContext>();
 
             // Add services to the container.
             builder.Services.AddControllers(options =>

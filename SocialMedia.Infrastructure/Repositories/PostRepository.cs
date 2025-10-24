@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SocialMedia.Core.Entities;
+using SocialMedia.Core.Enum;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
 
@@ -7,9 +8,11 @@ namespace SocialMedia.Infrastructure.Repositories
 {
     public class PostRepository : BaseRepository<Post>, IPostRepository
     {
+        private readonly IDapperContext _dapper;
         //private readonly SocialMediaContext _context;
-        public PostRepository(SocialMediaContext context) : base(context)
+        public PostRepository(SocialMediaContext context, IDapperContext dapper) : base(context)
         {
+            _dapper = dapper;
             //_context = context;
         }
 
@@ -20,11 +23,34 @@ namespace SocialMedia.Infrastructure.Repositories
         }
 
 
-        //public async Task<IEnumerable<Post>> GetAllPostAsync()
-        //{
-        //    var posts = await _context.Posts.ToListAsync();
-        //    return posts;
-        //}
+        public async Task<IEnumerable<Post>> GetAllPostDapperAsync(int limit = 10)
+        {
+            try
+            {
+                var sql = _dapper.Provider switch
+                {
+                    DatabaseProvider.SqlServer => @"
+                        select Id, UserId, Date, Description, Imagen 
+                        from post 
+                        order by Date desc
+                        OFFSET 0 ROWS FETCH NEXT @Limit ROWS ONLY;
+                    ",
+                    DatabaseProvider.MySql => @"
+                        select Id, UserId, Date, Description, Imagen 
+                        from post 
+                        order by Date desc
+                        LIMIT @Limit
+                    ",
+                    _ => throw new NotSupportedException("Provider no soportado")
+                };
+
+                return await _dapper.QueryAsync<Post>(sql, new { Limit = limit });
+            }
+            catch (Exception err)
+            {
+                throw new Exception(err.Message);
+            }
+        }
 
         //public async Task<Post> GetPostAsync(int id)
         //{

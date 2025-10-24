@@ -10,7 +10,7 @@ namespace SocialMedia.Core.Interfaces
     public interface IPostRepository : IBaseRepository<Post>
     {
         Task<IEnumerable<Post>> GetAllPostByUserAsync(int idUser);
-        //Task<IEnumerable<Post>> GetAllPostAsync();
+        Task<IEnumerable<Post>> GetAllPostDapperAsync(int limit = 10);
         //Task<Post> GetPostAsync(int id);
         //Task InsertPostAsync(Post post);
         //Task UpdatePostAsync(Post post);
