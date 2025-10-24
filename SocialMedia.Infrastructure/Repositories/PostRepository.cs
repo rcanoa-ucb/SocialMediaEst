@@ -3,6 +3,7 @@ using SocialMedia.Core.Entities;
 using SocialMedia.Core.Enum;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
+using SocialMedia.Infrastructure.Queries;
 
 namespace SocialMedia.Infrastructure.Repositories
 {
@@ -29,18 +30,8 @@ namespace SocialMedia.Infrastructure.Repositories
             {
                 var sql = _dapper.Provider switch
                 {
-                    DatabaseProvider.SqlServer => @"
-                        select Id, UserId, Date, Description, Imagen 
-                        from post 
-                        order by Date desc
-                        OFFSET 0 ROWS FETCH NEXT @Limit ROWS ONLY;
-                    ",
-                    DatabaseProvider.MySql => @"
-                        select Id, UserId, Date, Description, Imagen 
-                        from post 
-                        order by Date desc
-                        LIMIT @Limit
-                    ",
+                    DatabaseProvider.SqlServer => PostQueries.PostQuerySqlServer,
+                    DatabaseProvider.MySql => PostQueries.PostQueryMySQl,
                     _ => throw new NotSupportedException("Provider no soportado")
                 };
 
