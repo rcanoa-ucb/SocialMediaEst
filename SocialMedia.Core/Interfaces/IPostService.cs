@@ -11,7 +11,7 @@ namespace SocialMedia.Core.Interfaces
 {
     public interface IPostService
     {
-        Task<IEnumerable<Post>> GetAllPostAsync(PostQueryFilter postQueryFilter);
+        Task<ResponseData> GetAllPostsAsync(PostQueryFilter filters);
         Task<IEnumerable<Post>> GetAllPostDapperAsync();
         Task<IEnumerable<PostComentariosUsersResponse>> GetPostCommentUserAsync();
         Task<Post> GetPostAsync(int id);

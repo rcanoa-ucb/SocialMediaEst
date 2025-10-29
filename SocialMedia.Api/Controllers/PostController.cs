@@ -137,12 +137,37 @@ namespace SocialMedia.Api.Controllers
         public async Task<IActionResult> GetPostsDtoMapper(
             [FromQuery]PostQueryFilter postQueryFilter)
         {
-            var posts = await _postService.GetAllPostAsync(postQueryFilter);
-            var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
+            try
+            {
+                var posts = await _postService.GetAllPostsAsync(postQueryFilter);
 
-            var response = new ApiResponse<IEnumerable<PostDto>>(postsDto);
+                var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts.Pagination);
 
-            return Ok(response);
+                var pagination = new Pagination
+                {
+                    TotalCount = posts.Pagination.TotalCount,
+                    PageSize = posts.Pagination.PageSize,
+                    CurrentPage = posts.Pagination.CurrentPage,
+                    TotalPages = posts.Pagination.TotalPages,
+                    HasNextPage = posts.Pagination.HasNextPage,
+                    HasPreviousPage = posts.Pagination.HasPreviousPage
+                };
+                var response = new ApiResponse<IEnumerable<PostDto>>(postsDto)
+                {
+                    Pagination = pagination,
+                    Messages = posts.Messages
+                };
+
+                return StatusCode((int)posts.StatusCode, response);
+            }
+            catch (Exception err)
+            {
+                var responsePost = new ResponseData()
+                {
+                    Messages = new Message[] { new() { Type = "Error", Description = err.Message } },
+                };
+                return StatusCode(500, responsePost);
+            }
         }
 
         [HttpGet("dto/dapper")]

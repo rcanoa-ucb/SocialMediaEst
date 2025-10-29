@@ -6,6 +6,7 @@ using SocialMedia.Core.QueryFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,29 +32,45 @@ namespace SocialMedia.Core.Services
             //_userRepository = userRepository;
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Post>> GetAllPostAsync(
-            PostQueryFilter postQueryFilter)
+
+        public async Task<ResponseData> GetAllPostsAsync(PostQueryFilter filters)
         {
             var posts = await _unitOfWork.PostRepository.GetAll();
-            if (postQueryFilter.userId != null)
+
+            if (filters.userId != null)
             {
-                posts = posts.Where(a => a.UserId == postQueryFilter.userId);
+                posts = posts.Where(x => x.UserId == filters.userId);
             }
-            if (postQueryFilter.Date != null)
+            if (filters.Date != null)
             {
-                posts = posts.Where(x => x.Date.ToShortDateString() ==
-                postQueryFilter.Date?.ToShortDateString());
+                posts = posts.Where(x => x.Date.ToShortDateString() == filters.Date?.ToShortDateString());
             }
-            if (postQueryFilter.Description != null)
+            if (filters.Description != null)
             {
-                posts = posts.Where(x =>
-                x.Description.ToLower().Contains(postQueryFilter.Description.ToLower()));
+                posts = posts.Where(x => x.Description.ToLower().Contains(filters.Description.ToLower()));
             }
 
-            //return await _postRepository.GetAll();
-            //return await _unitOfWork.PostRepository.GetAll();
-            return posts;
+            var pagedPosts = PagedList<object>.Create(posts, filters.PageNumber, filters.PageSize);
+            if (pagedPosts.Any())
+            {
+                return new ResponseData()
+                {
+                    Messages = new Message[] { new() { Type = "Information", Description = "Registros de posts recuperados correctamente" } },
+                    Pagination = pagedPosts,
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
+            else
+            {
+                return new ResponseData()
+                {
+                    Messages = new Message[] { new() { Type = "Warning", Description = "No fue posible recuperar la cantidad de registros" } },
+                    Pagination = pagedPosts,
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
         }
+
 
         public async Task<IEnumerable<Post>> GetAllPostDapperAsync()
         {
@@ -136,5 +153,6 @@ namespace SocialMedia.Core.Services
 
             return false;
         }
+
     }
 }
