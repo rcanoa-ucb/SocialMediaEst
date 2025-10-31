@@ -1,4 +1,6 @@
-using FluentValidation;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using SocialMedia.Core.Entities;
@@ -18,6 +20,13 @@ namespace SocialMedia.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Configurar los secretos de usuario
+            if (builder.Environment.IsDevelopment())
+            {
+                builder.Configuration.AddUserSecrets<Program>();
+            }
+            //En Produccion los secretos vendran de Entornos globales
 
             #region Configurar la BD SqlServer
             //var connectionString = builder.Configuration.GetConnectionString("ConnectionSqlServer");
@@ -81,6 +90,24 @@ namespace SocialMedia.Api
 
                 options.EnableAnnotations();
             });
+
+            builder.Services.AddApiVersioning(options =>
+            {
+                // Reporta las versiones soportadas y obsoletas en encabezados de respuesta
+                options.ReportApiVersions = true;
+
+                // Versión por defecto si no se especifica
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+
+                // Soporta versionado mediante URL, Header o QueryString
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new UrlSegmentApiVersionReader(),       // Ejemplo: /api/v1/...
+                    new HeaderApiVersionReader("x-api-version"), // Ejemplo: Header → x-api-version: 1.0
+                    new QueryStringApiVersionReader("api-version") // Ejemplo: ?api-version=1.0
+                );
+            });
+
 
             // FluentValidation
             builder.Services.AddValidatorsFromAssemblyContaining<PostDtoValidator>();
