@@ -133,9 +133,25 @@ namespace SocialMedia.Api.Controllers
         #endregion
 
         #region Dto Mapper
+        /// <summary>
+        /// Recupera una lista paginada de publicaciones como objetos de transferencia de datos segun filtro
+        /// </summary>
+        /// <remarks>
+        /// Este metodo se utiliza para convertir las publicaciones recuperadas en DTOs que luego se 
+        /// devuelven en registros paginados
+        /// </remarks>
+        /// <param name="postQueryFilter">Los filtros de aplican al recuperar las publicaciones como la paginacion y busqueda, 
+        /// <param name="idAux">Identificador de la tabla</param>>
+        /// si no se envian los parametros se retornan todos los registros</param>
+        /// <returns>Coleccion o lista de post</returns>
+        /// <responsecode="200">Retorna todos lo registros</responsecode>
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(ApiResponse<IEnumerable<PostDto>>))]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpGet("dto/mapper")]
         public async Task<IActionResult> GetPostsDtoMapper(
-            [FromQuery]PostQueryFilter postQueryFilter)
+            [FromQuery]PostQueryFilter postQueryFilter, int idAux)
         {
             try
             {

@@ -59,6 +59,29 @@ namespace SocialMedia.Api
                 options.Filters.Add<ValidationFilter>();
             });
 
+            //Configuracion de Swagger
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new()
+                {
+                    Title = "Backend Social Media API",
+                    Version = "v1",
+                    Description = "Documentacion de la API de Social Media - NET 9",
+                    Contact = new()
+                    {
+                        Name = "Equipo de Desarrollo UCB",
+                        Email = "desarrollo@ucb.edu.bo"
+                    }
+                });
+
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+
+                options.EnableAnnotations();
+            });
+
             // FluentValidation
             builder.Services.AddValidatorsFromAssemblyContaining<PostDtoValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<GetByIdRequestValidator>();
@@ -67,6 +90,17 @@ namespace SocialMedia.Api
             builder.Services.AddScoped<IValidationService, ValidationService>();
 
             var app = builder.Build();
+
+            //Usar Swagger
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Backend Social Media API v1");
+                    options.RoutePrefix = string.Empty;
+                });
+            }
 
             // Configure the HTTP request pipeline.
 

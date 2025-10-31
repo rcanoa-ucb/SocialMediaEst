@@ -66,7 +66,7 @@ namespace SocialMedia.Core.Services
                 {
                     Messages = new Message[] { new() { Type = "Warning", Description = "No fue posible recuperar la cantidad de registros" } },
                     Pagination = pagedPosts,
-                    StatusCode = HttpStatusCode.OK
+                    StatusCode = HttpStatusCode.NotFound
                 };
             }
         }
