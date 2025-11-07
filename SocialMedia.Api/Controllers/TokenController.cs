@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SocialMedia.Core.Entities;
+using SocialMedia.Core.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SocialMedia.Api.Controllers
 {
@@ -13,18 +15,32 @@ namespace SocialMedia.Api.Controllers
     public class TokenController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        public TokenController(IConfiguration configuration)
+        private readonly ISecurityServices _securityServices;
+        public TokenController(IConfiguration configuration,
+            ISecurityServices securityServices)
         {
             _configuration = configuration;
+            _securityServices = securityServices;
         }
 
         [HttpPost]
-        public IActionResult Authentication(UserLogin userLogin)
+        public async Task<IActionResult> Authentication(UserLogin userLogin)
         {
             //Si es usuario valido
-            var token = GenerateToken(userLogin);
+            var validation = await IsValidUser(userLogin);
+            if (validation.Item1)
+            {
+                var token = GenerateToken(userLogin);
+                return Ok(new { token });
+            }
 
-            return Ok(new { token });
+            return NotFound("Credenciales no válidas");
+        }
+
+        private async Task<(bool, Security)> IsValidUser(UserLogin userLogin)
+        {
+            var user = await _securityServices.GetLoginByCredentials(userLogin);
+            return (user != null, user);
         }
 
         private string GenerateToken(UserLogin userLogin)
