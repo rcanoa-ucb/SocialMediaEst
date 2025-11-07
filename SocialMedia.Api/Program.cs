@@ -1,7 +1,10 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
@@ -108,6 +111,31 @@ namespace SocialMedia.Api
                 );
             });
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters =
+                new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Authentication:Issuer"],
+                    ValidAudience = builder.Configuration["Authentication:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        System.Text.Encoding.UTF8.GetBytes(
+                            builder.Configuration["Authentication:SecretKey"]
+                        )
+                    )
+                };
+            });
+
 
             // FluentValidation
             builder.Services.AddValidatorsFromAssemblyContaining<PostDtoValidator>();
@@ -133,8 +161,8 @@ namespace SocialMedia.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

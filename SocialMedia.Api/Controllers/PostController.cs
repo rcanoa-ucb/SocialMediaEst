@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Api.Responses;
 using SocialMedia.Core.CustomEntities;
@@ -11,6 +12,7 @@ using System.Net;
 
 namespace SocialMedia.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
