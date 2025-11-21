@@ -1,13 +1,14 @@
-﻿using SocialMedia.Core.Enum;
+﻿using SocialMedia.Core.Entities;
+using SocialMedia.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialMedia.Core.Entities
+namespace SocialMedia.Infrastructure.DTOs
 {
-    public partial class Security : BaseEntity
+    public class SecurityDto
     {
         public string Login { get; set; }
         public string Password { get; set; }

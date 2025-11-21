@@ -30,7 +30,7 @@ namespace SocialMedia.Api.Controllers
             var validation = await IsValidUser(userLogin);
             if (validation.Item1)
             {
-                var token = GenerateToken(userLogin);
+                var token = GenerateToken(validation.Item2);
                 return Ok(new { token });
             }
 
@@ -43,7 +43,7 @@ namespace SocialMedia.Api.Controllers
             return (user != null, user);
         }
 
-        private string GenerateToken(UserLogin userLogin)
+        private string GenerateToken(Security security)
         {
             string secretKey = _configuration["Authentication:SecretKey"];
 
@@ -58,9 +58,9 @@ namespace SocialMedia.Api.Controllers
             //Body Payload (Claims)
             var claims = new[]
             {
-                new Claim("Name", "Juan Perez"),
-                new Claim(ClaimTypes.Email, "jperez@correo.com"),
-                new Claim(ClaimTypes.Role, "Administrator")
+                new Claim("Name", security.Name),
+                new Claim("Login", security.Login),
+                new Claim(ClaimTypes.Role, security.Role.ToString())
             };
             var payload = new JwtPayload(
                 issuer: _configuration["Authentication:Issuer"],
@@ -75,6 +75,18 @@ namespace SocialMedia.Api.Controllers
 
             //Serializar el token
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        [HttpGet("Test")]
+        public async Task<IActionResult> Test(UserLogin userLogin)
+        {
+            var result = new
+            {
+                ConeccionSqlServer = _configuration["ConnectionStrings:ConnectionSqlServer"],
+                ConeccionMySql = _configuration["ConnectionStrings:ConnectionMySql"]
+            };
+
+            return Ok(result);
         }
     }
 }

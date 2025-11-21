@@ -24,6 +24,13 @@ namespace SocialMedia.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //Conguracion base
+            builder.Configuration.Sources.Clear();
+            builder.Configuration
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json",
+                    optional: true, reloadOnChange: true);
+
             //Configurar los secretos de usuario
             if (builder.Environment.IsDevelopment())
             {
@@ -143,6 +150,10 @@ namespace SocialMedia.Api
 
             // Services
             builder.Services.AddScoped<IValidationService, ValidationService>();
+            builder.Services.AddScoped<ISecurityServices, SecurityServices>();
+
+            //Variables de entorno
+            builder.Configuration.AddEnvironmentVariables();
 
             var app = builder.Build();
 
