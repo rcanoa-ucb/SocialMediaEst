@@ -10,7 +10,7 @@ using System.Text;
 
 namespace SocialMedia.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Login")]
     [ApiController]
     public class LoginController : ControllerBase
     {
@@ -24,6 +24,7 @@ namespace SocialMedia.Api.Controllers
         }
 
         [HttpPost]
+        [Route("Insertar")]
         public async Task<IActionResult> Post()
         {
             //UserLogin userLogin
@@ -48,6 +49,7 @@ namespace SocialMedia.Api.Controllers
         }
 
         [HttpGet]
+        [Route("Obtener")]
         public async Task<IActionResult> Get()
         {
             try
