@@ -76,7 +76,7 @@ namespace SocialMedia.Api.Controllers
                 audience: _configuration["Authentication:Audience"],
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(120)
+                expires: DateTime.UtcNow.AddMinutes(60)
                 );
 
             //Firma
