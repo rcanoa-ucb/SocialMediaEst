@@ -23,20 +23,23 @@ namespace SocialMedia.Api.Controllers
             _securityServices = securityServices;
         }
 
-        [HttpPost("User")]
-        public async Task<IActionResult> Authentication(UserLogin userLogin)
+        [HttpPost]
+        public async Task<IActionResult> Post()
         {
+            //UserLogin userLogin
             try
             {
-                //Si es usuario valido
-                var validation = await IsValidUser(userLogin);
-                if (validation.Item1)
-                {
-                    var token = GenerateToken(validation.Item2);
-                    return Ok(new { token });
-                }
+                ////Si es usuario valido
+                //var validation = await IsValidUser(userLogin);
+                //if (validation.Item1)
+                //{
+                //    var token = GenerateToken(validation.Item2);
+                //    return Ok(new { token });
+                //}
 
-                return NotFound("Credenciales no válidas");
+                //return NotFound("Credenciales no válidas");
+
+                return Ok("Soy Post");
             }
             catch (Exception err)
             {
@@ -45,13 +48,15 @@ namespace SocialMedia.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSec()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var res = await _securityServices.GetLoginByCredentials(new UserLogin() { User = "admin", Password = "admin" });
-               
-                return Ok(res);
+                //var res = await _securityServices.GetLoginByCredentials(new UserLogin() { User = "admin", Password = "admin" });
+
+                //return Ok(res);
+
+                return Ok("Soy Get");
             }
             catch (Exception err)
             {
