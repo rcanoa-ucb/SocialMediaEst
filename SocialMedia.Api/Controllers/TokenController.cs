@@ -46,27 +46,6 @@ namespace SocialMedia.Api.Controllers
             }
         }
 
-        [HttpPost("Login")]
-        public async Task<IActionResult> AuthenticationLogin(string user, string password)
-        {
-            try
-            {
-                //Si es usuario valido
-                var validation = await IsValidUser(new UserLogin() { User = user, Password = password });
-                if (validation.Item1)
-                {
-                    var token = GenerateToken(validation.Item2);
-                    return Ok(new { token });
-                }
-
-                return NotFound("Credenciales no válidas");
-            }
-            catch (Exception err)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, err.Message);
-            }
-        }
-
         private async Task<(bool, Security)> IsValidUser(UserLogin userLogin)
         {
             var user = await _securityServices.GetLoginByCredentials(userLogin);
@@ -97,7 +76,7 @@ namespace SocialMedia.Api.Controllers
                 audience: _configuration["Authentication:Audience"],
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(2)
+                expires: DateTime.UtcNow.AddMinutes(120)
                 );
 
             //Firma

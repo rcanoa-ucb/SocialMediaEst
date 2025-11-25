@@ -12,7 +12,7 @@ using System.Net;
 
 namespace SocialMedia.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
