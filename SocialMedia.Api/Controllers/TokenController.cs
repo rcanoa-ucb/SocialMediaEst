@@ -18,11 +18,14 @@ namespace SocialMedia.Api.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly ISecurityServices _securityServices;
+        private readonly IPasswordService _passwordService;
         public TokenController(IConfiguration configuration,
-            ISecurityServices securityServices)
+            ISecurityServices securityServices,
+            IPasswordService passwordService)
         {
             _configuration = configuration;
             _securityServices = securityServices;
+            _passwordService = passwordService;
         }
 
         [HttpPost]
@@ -49,7 +52,8 @@ namespace SocialMedia.Api.Controllers
         private async Task<(bool, Security)> IsValidUser(UserLogin userLogin)
         {
             var user = await _securityServices.GetLoginByCredentials(userLogin);
-            return (user != null, user);
+            var isValidHash = _passwordService.Check(user.Password, userLogin.Password);
+            return (isValidHash, user);
         }
 
         private string GenerateToken(Security security)

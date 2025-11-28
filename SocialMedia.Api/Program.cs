@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
+using SocialMedia.Core.CustomEntities;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Core.Services;
@@ -59,6 +60,7 @@ namespace SocialMedia.Api
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
             builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
             builder.Services.AddScoped<IDapperContext, DapperContext>();
+            builder.Services.AddSingleton<IPasswordService, PasswordService>();
 
             // Add services to the container.
             builder.Services.AddControllers(options =>
@@ -77,6 +79,9 @@ namespace SocialMedia.Api
             {
                 options.Filters.Add<ValidationFilter>();
             });
+
+            builder.Services.Configure<PasswordOptions>
+                (builder.Configuration.GetSection("PasswordOptions"));
 
             //Configuracion de Swagger
             builder.Services.AddEndpointsApiExplorer();
