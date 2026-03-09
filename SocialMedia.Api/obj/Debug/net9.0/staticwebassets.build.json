@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "NKbYxoC0eNk0zRA7Z45yCKIseZcbS5utsP/HKGrnSjA=",
+  "Source": "SocialMedia.Api",
+  "BasePath": "_content/SocialMedia.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

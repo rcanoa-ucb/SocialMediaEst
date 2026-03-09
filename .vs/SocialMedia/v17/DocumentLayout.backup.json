@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\Data\\SocialMediaContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SocialMedia.Infrastructure\\Data\\SocialMediaContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11B6D604-1D33-463D-AF60-646C61D1370B}|SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj|c:\\training\\ucb\\2026\\socialmedia\\socialmedia\\socialmedia.infrastructure\\socialmedia.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{11B6D604-1D33-463D-AF60-646C61D1370B}|SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj|solutionrelative:socialmedia.infrastructure\\socialmedia.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11B6D604-1D33-463D-AF60-646C61D1370B}|SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj|c:\\training\\ucb\\2026\\socialmedia\\socialmedia\\socialmedia.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11B6D604-1D33-463D-AF60-646C61D1370B}|SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj|solutionrelative:socialmedia.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6AF206C-46DF-4699-916A-6790EDC5ADA8}|SocialMedia.Core\\SocialMedia.Core.csproj|c:\\training\\ucb\\2026\\socialmedia\\socialmedia\\socialmedia.core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6AF206C-46DF-4699-916A-6790EDC5ADA8}|SocialMedia.Core\\SocialMedia.Core.csproj|solutionrelative:socialmedia.core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C405AAEF-E2FD-42E7-BFDD-D290346EF13D}|SocialMedia.Api\\SocialMedia.Api.csproj|c:\\training\\ucb\\2026\\socialmedia\\socialmedia\\socialmedia.api\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C405AAEF-E2FD-42E7-BFDD-D290346EF13D}|SocialMedia.Api\\SocialMedia.Api.csproj|solutionrelative:socialmedia.api\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C405AAEF-E2FD-42E7-BFDD-D290346EF13D}|SocialMedia.Api\\SocialMedia.Api.csproj|c:\\training\\ucb\\2026\\socialmedia\\socialmedia\\socialmedia.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C405AAEF-E2FD-42E7-BFDD-D290346EF13D}|SocialMedia.Api\\SocialMedia.Api.csproj|solutionrelative:socialmedia.api\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C405AAEF-E2FD-42E7-BFDD-D290346EF13D}|SocialMedia.Api\\SocialMedia.Api.csproj|c:\\training\\ucb\\2026\\socialmedia\\socialmedia\\socialmedia.api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C405AAEF-E2FD-42E7-BFDD-D290346EF13D}|SocialMedia.Api\\SocialMedia.Api.csproj|solutionrelative:socialmedia.api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SocialMediaContext.cs",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\Data\\SocialMediaContext.cs",
+              "RelativeDocumentMoniker": "SocialMedia.Infrastructure\\Data\\SocialMediaContext.cs",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\Data\\SocialMediaContext.cs",
+              "RelativeToolTip": "SocialMedia.Infrastructure\\Data\\SocialMediaContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T17:56:14.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SocialMedia.Infrastructure",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+              "RelativeToolTip": "SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-05T17:53:05.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\Class1.cs",
+              "RelativeDocumentMoniker": "SocialMedia.Infrastructure\\Class1.cs",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\Class1.cs",
+              "RelativeToolTip": "SocialMedia.Infrastructure\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T17:39:54.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Core\\Class1.cs",
+              "RelativeDocumentMoniker": "SocialMedia.Core\\Class1.cs",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Core\\Class1.cs",
+              "RelativeToolTip": "SocialMedia.Core\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T17:39:27.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "SocialMedia.Api\\Controllers\\TestController.cs",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\Controllers\\TestController.cs",
+              "RelativeToolTip": "SocialMedia.Api\\Controllers\\TestController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T17:27:21.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "SocialMedia.Api\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "SocialMedia.Api\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T17:26:36.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "SocialMedia.Api\\WeatherForecast.cs",
+              "ToolTip": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\WeatherForecast.cs",
+              "RelativeToolTip": "SocialMedia.Api\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T17:26:30.134Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
