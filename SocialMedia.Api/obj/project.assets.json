@@ -4864,11 +4864,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\SocialMedia.Api.csproj",
+      "projectUniqueName": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Api\\SocialMedia.Api.csproj",
       "projectName": "SocialMedia.Api",
-      "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\SocialMedia.Api.csproj",
+      "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Api\\SocialMedia.Api.csproj",
       "packagesPath": "C:\\Users\\Developer\\.nuget\\packages\\",
-      "outputPath": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Api\\obj\\",
+      "outputPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4890,11 +4890,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Core\\SocialMedia.Core.csproj": {
-              "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Core\\SocialMedia.Core.csproj"
+            "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj": {
+              "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj"
             },
-            "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj": {
-              "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia\\SocialMedia\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj"
+            "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj": {
+              "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj"
             }
           }
         }
@@ -4909,7 +4909,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -4945,7 +4945,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

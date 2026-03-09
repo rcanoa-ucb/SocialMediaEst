@@ -9,3 +9,15 @@ C:\Training\Ucb\2026\SocialMedia\SocialMedia\SocialMedia.Core\obj\Debug\net9.0\S
 C:\Training\Ucb\2026\SocialMedia\SocialMedia\SocialMedia.Core\obj\Debug\net9.0\refint\SocialMedia.Core.dll
 C:\Training\Ucb\2026\SocialMedia\SocialMedia\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.pdb
 C:\Training\Ucb\2026\SocialMedia\SocialMedia\SocialMedia.Core\obj\Debug\net9.0\ref\SocialMedia.Core.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\bin\Debug\net9.0\SocialMedia.Core.deps.json
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\bin\Debug\net9.0\SocialMedia.Core.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\bin\Debug\net9.0\SocialMedia.Core.pdb
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.AssemblyInfoInputs.cache
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.AssemblyInfo.cs
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.csproj.CoreCompileInputs.cache
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.sourcelink.json
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\refint\SocialMedia.Core.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.pdb
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\ref\SocialMedia.Core.dll
