@@ -28,7 +28,15 @@ namespace SocialMedia.Api
             //Registrar los servicios
             builder.Services.AddTransient<IPostRepository, PostRepository>();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddNewtonsoftJson(
+                options =>
+                { 
+                    options.SerializerSettings.ReferenceLoopHandling
+                     = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                }
+             );
+
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 

@@ -341,3 +341,7 @@ C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\obj\Debug\net9.0\refint
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\obj\Debug\net9.0\SocialMedia.Api.pdb
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\obj\Debug\net9.0\SocialMedia.Api.genruntimeconfig.cache
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\obj\Debug\net9.0\ref\SocialMedia.Api.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Newtonsoft.Json.Bson.dll

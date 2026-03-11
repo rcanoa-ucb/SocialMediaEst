@@ -34,7 +34,21 @@ namespace SocialMedia.Api.Controllers
         public async Task<IActionResult> InsertPost(Post post)
         {
             await _postRepository.InsertPost(post);
-            return Created();
+            return Created($"api/post/{post.Id}", post);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePost(Post post)
+        {
+            await _postRepository.UpdatePost(post);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeletePost(Post post)
+        {
+            await _postRepository.DeletePost(post);
+            return NoContent();
         }
 
     }

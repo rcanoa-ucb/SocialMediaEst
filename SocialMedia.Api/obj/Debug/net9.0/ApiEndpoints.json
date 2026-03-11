@@ -27,6 +27,38 @@
   },
   {
     "ContainingType": "SocialMedia.Api.Controllers.PostController",
+    "Method": "UpdatePost",
+    "RelativePath": "api/Post",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "post",
+        "Type": "SocialMedia.Core.Entities.Post",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMedia.Api.Controllers.PostController",
+    "Method": "DeletePost",
+    "RelativePath": "api/Post",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "post",
+        "Type": "SocialMedia.Core.Entities.Post",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMedia.Api.Controllers.PostController",
     "Method": "GetPostById",
     "RelativePath": "api/Post/{id}",
     "HttpMethod": "GET",
