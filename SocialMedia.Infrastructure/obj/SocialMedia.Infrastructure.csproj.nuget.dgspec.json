@@ -121,6 +121,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.13, )"
@@ -134,6 +138,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.13, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.14, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",

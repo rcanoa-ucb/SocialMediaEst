@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EcQ8aEUadGo=",
+  "dgSpecHash": "oW8MG4BRjOw=",
   "success": true,
   "projectFilePath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Developer\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -30,7 +31,7 @@
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.13\\microsoft.extensions.caching.memory.9.0.13.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.13\\microsoft.extensions.configuration.abstractions.9.0.13.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.13\\microsoft.extensions.dependencyinjection.9.0.13.nupkg.sha512",
-    "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.13\\microsoft.extensions.dependencyinjection.abstractions.9.0.13.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.14\\microsoft.extensions.dependencyinjection.abstractions.9.0.14.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.13\\microsoft.extensions.dependencymodel.9.0.13.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.logging\\9.0.13\\microsoft.extensions.logging.9.0.13.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.13\\microsoft.extensions.logging.abstractions.9.0.13.nupkg.sha512",
@@ -86,5 +87,18 @@
     "C:\\Users\\Developer\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "El paquete \"AutoMapper\" 13.0.1 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
+      "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

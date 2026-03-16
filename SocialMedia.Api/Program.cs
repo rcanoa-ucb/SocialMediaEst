@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
+using SocialMedia.Infrastructure.Mappings;
 using SocialMedia.Infrastructure.Repositories;
 
 namespace SocialMedia.Api
@@ -36,6 +37,9 @@ namespace SocialMedia.Api
                      = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 }
              );
+
+            //Registra el profile del automapper para el Post
+            builder.Services.AddAutoMapper(typeof(PostProfile).Assembly);
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();

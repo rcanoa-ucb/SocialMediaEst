@@ -345,3 +345,4 @@ C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Micros
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Newtonsoft.Json.Bson.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\AutoMapper.dll
