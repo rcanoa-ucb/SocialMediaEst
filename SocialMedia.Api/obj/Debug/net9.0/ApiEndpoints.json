@@ -154,7 +154,7 @@
   },
   {
     "ContainingType": "SocialMedia.Api.Controllers.PostController",
-    "Method": "GetDtoMapperPosts",
+    "Method": "GetPostsDtoMapper",
     "RelativePath": "api/Post/dto/mapper",
     "HttpMethod": "GET",
     "IsController": true,
@@ -164,7 +164,7 @@
   },
   {
     "ContainingType": "SocialMedia.Api.Controllers.PostController",
-    "Method": "InsertDtoMapperPost",
+    "Method": "InsertPostDtoMapper",
     "RelativePath": "api/Post/dto/mapper",
     "HttpMethod": "POST",
     "IsController": true,
@@ -180,7 +180,7 @@
   },
   {
     "ContainingType": "SocialMedia.Api.Controllers.PostController",
-    "Method": "GetDtoMapperPostById",
+    "Method": "GetPostByIdDtoMapper",
     "RelativePath": "api/Post/dto/mapper/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -196,7 +196,7 @@
   },
   {
     "ContainingType": "SocialMedia.Api.Controllers.PostController",
-    "Method": "UpdateDtoMapperPost",
+    "Method": "UpdatePostDtoMapper",
     "RelativePath": "api/Post/dto/mapper/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -217,7 +217,7 @@
   },
   {
     "ContainingType": "SocialMedia.Api.Controllers.PostController",
-    "Method": "DeleteDtoMapperPost",
+    "Method": "DeletePostDtoMapper",
     "RelativePath": "api/Post/dto/mapper/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,

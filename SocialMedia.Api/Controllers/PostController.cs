@@ -151,106 +151,60 @@ namespace SocialMedia.Api.Controllers
         #endregion
 
         #region Con Dto Mapper
-        [HttpGet("dto/mapper")]
-        public async Task<IActionResult> GetDtoMapperPosts()
+        [HttpGet("dto/mapper/")]
+        public async Task<IActionResult> GetPostsDtoMapper()
         {
             var posts = await _postRepository.GetAllPostsAsync();
-
             var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
-
-            //var postsDto = posts.Select(p => new PostDto
-            //{
-            //    Id = p.Id,
-            //    UserId = p.UserId,
-            //    Date = p.Date.ToString("dd-MM-yyyy"),
-            //    Description = p.Description,
-            //    Image = p.Imagen
-            //});
-
-
             return Ok(postsDto);
         }
 
         [HttpGet("dto/mapper/{id}")]
-        public async Task<IActionResult> GetDtoMapperPostById(int id)
+        public async Task<IActionResult> GetPostByIdDtoMapper(int id)
         {
             var post = await _postRepository.GetPostByIdAsync(id);
             if (post == null)
-                return NotFound("Post no encontrado");
+                return NotFound("Post no encontrado.");
 
             var postDto = _mapper.Map<PostDto>(post);
-
-            //var postDto = new PostDto
-            //{
-            //    Id = post.Id,
-            //    UserId = post.UserId,
-            //    Date = post.Date.ToString("dd-MM-yyyy HH:mm:ss"),
-            //    Description = post.Description,
-            //    Image = post.Imagen
-            //};
             return Ok(postDto);
         }
 
-        [HttpPost("dto/mapper")]
-        public async Task<IActionResult> InsertDtoMapperPost(PostDto postDto)
+        [HttpPost("dto/mapper/")]
+        public async Task<IActionResult> InsertPostDtoMapper(PostDto postDto)
         {
-            //var post = new Post
-            //{
-            //    Id = postDto.Id,
-            //    UserId = postDto.UserId,
-            //    Date = Convert.ToDateTime(postDto.Date),
-            //    Description = postDto.Description,
-            //    Imagen = postDto.Image
-            //};
-
             var post = _mapper.Map<Post>(postDto);
-
             await _postRepository.InsertPost(post);
-            return Created($"api/post/{post.Id}", post);
+            return Ok(post);
         }
 
         [HttpPut("dto/mapper/{id}")]
-        public async Task<IActionResult> UpdateDtoMapperPost
-            (int id, [FromBody] PostDto postDto)
+        public async Task<IActionResult> UpdatePostDtoMapper(int id, [FromBody] PostDto postDto)
         {
             if (id != postDto.Id)
-                return BadRequest("El ID del post no coincide");
+                return BadRequest("El ID del post no coincide.");
 
             var post = await _postRepository.GetPostByIdAsync(id);
             if (post == null)
-                return NotFound("Post no encontrado");
-
-            //Mapear valor del DTO a la entidad
-            //post.UserId = postDto.UserId;
-            //post.Date = Convert.ToDateTime(postDto.Date);
-            //post.Description = postDto.Description;
-            //post.Imagen = postDto.Image;
-
-            //var postDtoInsert = new Post
-            //{
-            //    Id = postDto.Id,
-            //    UserId = postDto.UserId,
-            //    Date = Convert.ToDateTime(postDto.Date),
-            //    Description = postDto.Description,
-            //    Imagen = postDto.Image
-            //};
+                return NotFound("Post no encontrado.");
 
             _mapper.Map(postDto, post);
 
             await _postRepository.UpdatePost(post);
-            return NoContent();
+
+            return Ok(post);
         }
 
         [HttpDelete("dto/mapper/{id}")]
-        public async Task<IActionResult> DeleteDtoMapperPost
-            (int id)
+        public async Task<IActionResult> DeletePostDtoMapper(int id)
         {
             var post = await _postRepository.GetPostByIdAsync(id);
             if (post == null)
-                return NotFound("Post no encontrado");
+                return NotFound("Post no encontrado.");
 
             await _postRepository.DeletePost(post);
-            return NoContent();
+
+            return NoContent(); // 204 sin contenido
         }
         #endregion
     }
