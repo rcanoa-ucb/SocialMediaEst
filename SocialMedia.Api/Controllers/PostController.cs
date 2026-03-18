@@ -175,28 +175,35 @@ namespace SocialMedia.Api.Controllers
         public async Task<IActionResult> GetDtoMapperPostById(int id)
         {
             var post = await _postRepository.GetPostByIdAsync(id);
-            var postDto = new PostDto
-            {
-                Id = post.Id,
-                UserId = post.UserId,
-                Date = post.Date.ToString("dd-MM-yyyy HH:mm:ss"),
-                Description = post.Description,
-                Image = post.Imagen
-            };
+            if (post == null)
+                return NotFound("Post no encontrado");
+
+            var postDto = _mapper.Map<PostDto>(post);
+
+            //var postDto = new PostDto
+            //{
+            //    Id = post.Id,
+            //    UserId = post.UserId,
+            //    Date = post.Date.ToString("dd-MM-yyyy HH:mm:ss"),
+            //    Description = post.Description,
+            //    Image = post.Imagen
+            //};
             return Ok(postDto);
         }
 
         [HttpPost("dto/mapper")]
         public async Task<IActionResult> InsertDtoMapperPost(PostDto postDto)
         {
-            var post = new Post
-            {
-                Id = postDto.Id,
-                UserId = postDto.UserId,
-                Date = Convert.ToDateTime(postDto.Date),
-                Description = postDto.Description,
-                Imagen = postDto.Image
-            };
+            //var post = new Post
+            //{
+            //    Id = postDto.Id,
+            //    UserId = postDto.UserId,
+            //    Date = Convert.ToDateTime(postDto.Date),
+            //    Description = postDto.Description,
+            //    Imagen = postDto.Image
+            //};
+
+            var post = _mapper.Map<Post>(postDto);
 
             await _postRepository.InsertPost(post);
             return Created($"api/post/{post.Id}", post);
@@ -214,10 +221,10 @@ namespace SocialMedia.Api.Controllers
                 return NotFound("Post no encontrado");
 
             //Mapear valor del DTO a la entidad
-            post.UserId = postDto.UserId;
-            post.Date = Convert.ToDateTime(postDto.Date);
-            post.Description = postDto.Description;
-            post.Imagen = postDto.Image;
+            //post.UserId = postDto.UserId;
+            //post.Date = Convert.ToDateTime(postDto.Date);
+            //post.Description = postDto.Description;
+            //post.Imagen = postDto.Image;
 
             //var postDtoInsert = new Post
             //{
@@ -227,6 +234,8 @@ namespace SocialMedia.Api.Controllers
             //    Description = postDto.Description,
             //    Imagen = postDto.Image
             //};
+
+            _mapper.Map(postDto, post);
 
             await _postRepository.UpdatePost(post);
             return NoContent();
