@@ -4,6 +4,7 @@ using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
 using SocialMedia.Infrastructure.Mappings;
 using SocialMedia.Infrastructure.Repositories;
+using SocialMedia.Services.Validators;
 
 namespace SocialMedia.Api
 {
@@ -40,6 +41,11 @@ namespace SocialMedia.Api
 
             //Registra el profile del automapper para el Post
             builder.Services.AddAutoMapper(typeof(PostProfile).Assembly);
+
+            //Registrar Validadores de FluentValidations
+            builder.Services.AddScoped<PostDtoValidator>();
+            builder.Services.AddScoped<CrearPostDtoValidator>();
+            builder.Services.AddScoped<ActualizarPostDtoValidator>();
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();

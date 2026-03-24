@@ -346,3 +346,8 @@ C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Micros
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Newtonsoft.Json.Bson.dll
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\AutoMapper.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\FluentValidation.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\FluentValidation.AspNetCore.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\SocialMedia.Services.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\SocialMedia.Services.pdb
