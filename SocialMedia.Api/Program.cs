@@ -4,6 +4,8 @@ using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
 using SocialMedia.Infrastructure.Mappings;
 using SocialMedia.Infrastructure.Repositories;
+using SocialMedia.Services.Interfaces;
+using SocialMedia.Services.Services;
 using SocialMedia.Services.Validators;
 
 namespace SocialMedia.Api
@@ -28,7 +30,12 @@ namespace SocialMedia.Api
             #endregion
             
             //Registrar los servicios
-            builder.Services.AddTransient<IPostRepository, PostRepository>();
+            //builder.Services.AddTransient<IPostRepository, PostRepository>();
+            //builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<IPostService, PostService>();
+            builder.Services.AddScoped
+                (typeof(IBaseRepository<>), 
+                (typeof(BaseRepository<>)));
 
             builder.Services.AddControllers()
                 .AddNewtonsoftJson(
