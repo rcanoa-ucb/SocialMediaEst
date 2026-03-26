@@ -34,7 +34,7 @@ namespace SocialMedia.Services.Services
 
         public async Task InsertPost(Post post)
         {
-            var user = _userRepository.GetById(post.UserId);
+            var user = await _userRepository.GetById(post.UserId);
             if (user == null)
                 throw new Exception("El usuario no existe");
 
