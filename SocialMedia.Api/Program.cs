@@ -36,6 +36,7 @@ namespace SocialMedia.Api
             builder.Services.AddScoped
                 (typeof(IBaseRepository<>), 
                 (typeof(BaseRepository<>)));
+            builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddControllers()
                 .AddNewtonsoftJson(

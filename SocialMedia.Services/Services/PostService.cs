@@ -1,6 +1,5 @@
 ﻿using SocialMedia.Core.Entities;
 using SocialMedia.Core.Interfaces;
-using SocialMedia.Infrastructure.Repositories;
 using SocialMedia.Services.Interfaces;
 
 namespace SocialMedia.Services.Services
@@ -10,31 +9,40 @@ namespace SocialMedia.Services.Services
         //public readonly IPostRepository _postRepository;
         //public readonly IUserRepository _userRepository;
 
-        public readonly IBaseRepository<Post> _postRepository;
-        public readonly IBaseRepository<User> _userRepository;
+        //public readonly IBaseRepository<Post> _postRepository;
+        //public readonly IBaseRepository<User> _userRepository;
 
-        public PostService(IBaseRepository<Post> postRepository,
-            IBaseRepository<User> userRepository)
+        public readonly IUnitOfWork _unitOfWork;
+
+        //public PostService(IBaseRepository<Post> postRepository,
+        //    IBaseRepository<User> userRepository)
+        //{
+        //    _postRepository = postRepository;
+        //    _userRepository = userRepository;
+        //}
+
+        public PostService(IUnitOfWork unitOfWork)
         {
-            _postRepository = postRepository;
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<Post>> GetAllPostsAsync()
         {
-            return await _postRepository.GetAll();
-                //GetAllPostsAsync();
+            //return await _postRepository.GetAll();
+            //GetAllPostsAsync();
+
+            return await _unitOfWork.PostRepository.GetAll();
         }
 
         public async Task<Post> GetPostByIdAsync(int id)
         {
-            return await _postRepository.GetById(id);
+            return await _unitOfWork.PostRepository.GetById(id);
             // GetPostByIdAsync(id);
         }
 
         public async Task InsertPost(Post post)
         {
-            var user = _userRepository.GetById(post.UserId);
+            var user = await _unitOfWork.UserRepository.GetById(post.UserId);
             if (user == null)
                 throw new Exception("El usuario no existe");
 
@@ -43,17 +51,18 @@ namespace SocialMedia.Services.Services
                 throw new Exception("El contenido no es permitido");
             }
 
-            await _postRepository.Add(post);
+            await _unitOfWork.PostRepository.Add(post);
         }
 
         public async Task UpdatePost(Post post)
         {
-            await _postRepository.Update(post);
+            //await _postRepository.Update(post
+            await _unitOfWork.PostRepository.Update(post);
         }
 
         public async Task DeletePost(int id)
         {
-            await _postRepository.Delete(id);
+            await _unitOfWork.PostRepository.Delete(id);
         }
 
         //Lista de palabras o expresiones no permitidas
