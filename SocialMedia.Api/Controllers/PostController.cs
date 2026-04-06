@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -215,7 +216,6 @@ namespace SocialMedia.Api.Controllers
                 await _postService.InsertPost(post);
 
                 var response = new ApiResponse<PostDto>(postDto);
-
                 return Ok(response);
             }
             catch (Exception ex)
