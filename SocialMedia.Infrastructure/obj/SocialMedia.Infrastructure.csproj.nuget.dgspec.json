@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj": {}
+    "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Core\\SocialMedia.Core.csproj": {
+    "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Core\\SocialMedia.Core.csproj",
+        "projectUniqueName": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj",
         "projectName": "SocialMedia.Core",
-        "projectPath": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Core\\SocialMedia.Core.csproj",
-        "packagesPath": "C:\\Users\\Richard\\.nuget\\packages\\",
-        "outputPath": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Core\\obj\\",
+        "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj",
+        "packagesPath": "C:\\Users\\Developer\\.nuget\\packages\\",
+        "outputPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Developer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,8 +27,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/rcanoa-ucb/Backend-Ucb-Nacional/_packaging/NuGet-Ucb-Security/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
@@ -67,24 +66,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj": {
+    "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
         "projectName": "SocialMedia.Infrastructure",
-        "projectPath": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Richard\\.nuget\\packages\\",
-        "outputPath": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Infrastructure\\obj\\",
+        "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Developer\\.nuget\\packages\\",
+        "outputPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Richard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Developer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -94,15 +93,14 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/rcanoa-ucb/Backend-Ucb-Nacional/_packaging/NuGet-Ucb-Security/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Core\\SocialMedia.Core.csproj": {
-                "projectPath": "D:\\Training\\UCB\\1-2026\\SocialMediaEst\\SocialMedia.Core\\SocialMedia.Core.csproj"
+              "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj": {
+                "projectPath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj"
               }
             }
           }
@@ -166,7 +164,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
