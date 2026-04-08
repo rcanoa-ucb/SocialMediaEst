@@ -52,17 +52,20 @@ namespace SocialMedia.Services.Services
             }
 
             await _unitOfWork.PostRepository.Add(post);
+            await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task UpdatePost(Post post)
+        public void UpdatePost(Post post)
         {
             //await _postRepository.Update(post
-            await _unitOfWork.PostRepository.Update(post);
+            _unitOfWork.PostRepository.Update(post);
+            _unitOfWork.SaveChanges();
         }
 
         public async Task DeletePost(int id)
         {
             await _unitOfWork.PostRepository.Delete(id);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         //Lista de palabras o expresiones no permitidas

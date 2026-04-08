@@ -11,11 +11,15 @@ namespace SocialMedia.Infrastructure.Mappings
         {
             CreateMap<Post, PostDto>()
                 .ForMember(dest => dest.Date,
-                    opt => opt.ConvertUsing<DateTimeToStringConverter, DateTime>());
+                    opt => opt.ConvertUsing<DateTimeToStringConverter, DateTime>())
+                .ForMember(dest => dest.Image,
+                           opt => opt.MapFrom(src => src.Imagen));
 
             CreateMap<PostDto, Post>()
                 .ForMember(dest => dest.Date,
-                    opt => opt.ConvertUsing<StringToDateTimeConverter, string>());
+                    opt => opt.ConvertUsing<StringToDateTimeConverter, string>())
+                .ForMember(dest => dest.Imagen,
+                    opt => opt.MapFrom(src => src.Image));
         }
     }
 

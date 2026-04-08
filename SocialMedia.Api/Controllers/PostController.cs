@@ -61,7 +61,7 @@ namespace SocialMedia.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdatePost(Post post)
         {
-            await _postService.UpdatePost(post);
+            _postService.UpdatePost(post);
             return NoContent();
         }
 
@@ -148,7 +148,7 @@ namespace SocialMedia.Api.Controllers
             //    Imagen = postDto.Image
             //};
 
-            await _postService.UpdatePost(post);
+            _postService.UpdatePost(post);
             return NoContent();
         }
 
@@ -258,7 +258,7 @@ namespace SocialMedia.Api.Controllers
             {
                 _mapper.Map(postDto, post);
 
-                await _postService.UpdatePost(post);
+                _postService.UpdatePost(post);
                 var response = new ApiResponse<PostDto>(postDto);
                 return Ok(response);
             }
