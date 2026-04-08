@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Api.Filters;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
 using SocialMedia.Infrastructure.Mappings;
@@ -59,6 +60,8 @@ namespace SocialMedia.Api
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

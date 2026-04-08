@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Azure;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Api.Responses;
 using SocialMedia.Core.DTOs;
 using SocialMedia.Core.Entities;
+using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.Services.Validators;
@@ -198,16 +200,19 @@ namespace SocialMedia.Api.Controllers
             var validationResult = await _crearValidator.ValidateAsync(postDto);
             if (!validationResult.IsValid)
             {
-                return BadRequest(new
-                {
-                    message = "Error de validación",
-                    errors = validationResult.Errors.Select(e => new 
-                    {
-                        field = e.PropertyName,
-                        error = e.ErrorMessage
-                        //errorcode = e.ErrorCode
-                    })
-                });
+                //return BadRequest(new
+                //{
+                //    message = "Error de validación",
+                //    errors = validationResult.Errors.Select(e => new 
+                //    {
+                //        field = e.PropertyName,
+                //        error = e.ErrorMessage
+                //        //errorcode = e.ErrorCode
+                //    })
+                //});
+
+                // Lanzamos ValidationException de FluentValidation para que el Middleware la procese
+                throw new ValidationException(validationResult.Errors);
             }
 
             try
@@ -218,13 +223,15 @@ namespace SocialMedia.Api.Controllers
                 var response = new ApiResponse<PostDto>(postDto);
                 return Ok(response);
             }
+            catch (BussinesException)
+            {
+                //Re-lanzar para que le middleware lo capture y genere
+                throw;
+            }
             catch (Exception ex)
             {
-                return StatusCode(500, new
-                {
-                    message = "Error al crear el post",
-                    error = ex.Message
-                });
+                //Cualquier error inesperado
+                throw new Exception("Error inesperado, intente mas tarde.", ex);
             }
         }
 

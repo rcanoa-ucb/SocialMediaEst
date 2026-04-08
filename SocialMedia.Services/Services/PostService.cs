@@ -1,6 +1,8 @@
 ﻿using SocialMedia.Core.Entities;
+using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Services.Interfaces;
+using System.Net;
 
 namespace SocialMedia.Services.Services
 {
@@ -44,11 +46,13 @@ namespace SocialMedia.Services.Services
         {
             var user = await _unitOfWork.UserRepository.GetById(post.UserId);
             if (user == null)
-                throw new Exception("El usuario no existe");
+                throw new BussinesException("El usuario no existe",
+                    HttpStatusCode.BadRequest);
 
             if (ContainsFobbidenWord(post.Description))
             {
-                throw new Exception("El contenido no es permitido");
+                throw new BussinesException("El contenido no es permitido",
+                    HttpStatusCode.BadRequest);
             }
 
             //Si el usuario tiene menos de 10 publicaciones,
@@ -62,7 +66,8 @@ namespace SocialMedia.Services.Services
                     .FirstOrDefault();
                 if ((DateTime.Now - lastPost.Date).TotalDays < 7)
                 {
-                    throw new Exception("No puedes publicar este post");
+                    throw new BussinesException("No puedes publicar este post",
+                        HttpStatusCode.BadRequest);
                 }
             }
 
