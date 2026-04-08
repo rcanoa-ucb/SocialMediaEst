@@ -51,6 +51,21 @@ namespace SocialMedia.Services.Services
                 throw new Exception("El contenido no es permitido");
             }
 
+            //Si el usuario tiene menos de 10 publicaciones,
+            //solo puede publicar 1 sola vez por semana
+            var userPost = await _unitOfWork.PostRepository
+                .GetAllPostsByUserAsync(post.UserId);
+            if (userPost.Count() < 10)
+            {
+                var lastPost = userPost
+                    .OrderByDescending(x => x.Date)
+                    .FirstOrDefault();
+                if ((DateTime.Now - lastPost.Date).TotalDays < 7)
+                {
+                    throw new Exception("No puedes publicar este post");
+                }
+            }
+
             await _unitOfWork.PostRepository.Add(post);
             await _unitOfWork.SaveChangesAsync();
         }

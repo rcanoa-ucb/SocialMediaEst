@@ -2,12 +2,8 @@
 
 namespace SocialMedia.Core.Interfaces
 {
-    public interface IPostRepository
+    public interface IPostRepository : IBaseRepository<Post>
     {
-        Task<IEnumerable<Post>> GetAllPostsAsync();
-        Task<Post> GetPostByIdAsync(int id);
-        Task InsertPost(Post post);
-        Task UpdatePost(Post post);
-        Task DeletePost(Post post);
+        Task<IEnumerable<Post>> GetAllPostsByUserAsync(int userId);
     }
 }
