@@ -9,6 +9,7 @@ using SocialMedia.Core.DTOs;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Interfaces;
+using SocialMedia.Core.QueryFilters;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.Services.Validators;
 
@@ -168,10 +169,12 @@ namespace SocialMedia.Api.Controllers
         #endregion
 
         #region Con Dto Mapper
-        [HttpGet("dto/mapper/")]
-        public async Task<IActionResult> GetPostsDtoMapper()
+        [HttpGet("dto/mapper")]
+        //?userId=10 & Date = '10-01-2026' & param = 15
+        public async Task<IActionResult> GetPostsDtoMapper(
+            [FromQuery] PostQueryFilter? filters)
         {
-            var posts = await _postService.GetAllPostsAsync();
+            var posts = await _postService.GetAllPostsAsync(filters);
             var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
 
             var response = new ApiResponse<IEnumerable<PostDto>>(postsDto);

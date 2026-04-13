@@ -1,6 +1,8 @@
 ﻿using SocialMedia.Core.Entities;
 using SocialMedia.Core.Exceptions;
+using SocialMedia.Core.Helpers;
 using SocialMedia.Core.Interfaces;
+using SocialMedia.Core.QueryFilters;
 using SocialMedia.Services.Interfaces;
 using System.Net;
 
@@ -28,12 +30,38 @@ namespace SocialMedia.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Post>> GetAllPostsAsync()
+        public async Task<IEnumerable<Post>> GetAllPostsAsync(
+            PostQueryFilter? filters = null)
         {
             //return await _postRepository.GetAll();
             //GetAllPostsAsync();
 
-            return await _unitOfWork.PostRepository.GetAll();
+            var posts = await _unitOfWork.PostRepository.GetAll();
+
+            if (filters != null)
+            {
+                if (filters.UserId != null)
+                {
+                    posts = posts.Where(a => a.UserId == filters.UserId);
+                }
+                if (filters.Description != null)
+                {
+                    posts = posts.Where(x => x.Description.ToLower()
+                    .Contains(filters.Description.ToLower()));
+                }
+                if (filters.Date != null)
+                { 
+                    string fechaAux = 
+                        Procesos.ParseFechaFlexible(filters.Date);
+                    if (fechaAux != null)
+                    {
+                        posts = posts.Where(x => x.Date.ToShortDateString() ==
+                        Convert.ToDateTime(fechaAux).ToShortDateString());
+                    }
+                }
+            }
+
+            return posts;
         }
 
         public async Task<Post> GetPostByIdAsync(int id)
