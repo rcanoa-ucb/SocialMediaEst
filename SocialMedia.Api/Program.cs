@@ -46,7 +46,10 @@ namespace SocialMedia.Api
                     options.SerializerSettings.ReferenceLoopHandling
                      = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 }
-             );
+             ).ConfigureApiBehaviorOptions(options =>
+             {
+                options.SuppressModelStateInvalidFilter = true;
+             });
 
             //Registra el profile del automapper para el Post
             builder.Services.AddAutoMapper(typeof(PostProfile).Assembly);
