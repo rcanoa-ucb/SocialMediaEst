@@ -1,4 +1,5 @@
-﻿using SocialMedia.Core.Enum;
+﻿using Dapper;
+using SocialMedia.Core.Enum;
 using SocialMedia.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -80,24 +81,129 @@ namespace SocialMedia.Infrastructure.Data
             }
         }
 
-        public Task<int> ExecuteAsync(string sql, object? param = null, CommandType commandType = CommandType.Text)
+        public async Task<T?> QueryFirstOrDefaultAsync<T>(
+            string sql, object? param = null, CommandType commandType = CommandType.Text)
         {
-            throw new NotImplementedException();
+            var (conn, tx, owns) = GetConnAndTx();
+            try
+            {
+                await OpenIfNeededAsync(conn);
+
+                return await conn.QueryFirstOrDefaultAsync<T>(new CommandDefinition(
+                    sql, param, tx, commandType: commandType
+                    ));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (owns)
+                { 
+                    if (conn is DbConnection dbConn && dbConn.State != ConnectionState.Closed)
+                        await dbConn.CloseAsync();
+                    conn.Dispose();
+                }
+            }
         }
 
-        public Task<T> ExecuteScalarAsync<T>(string sql, object? param = null, CommandType commandType = CommandType.Text)
+        /// <summary>
+        /// Ejecuta un SELECT que devuelve múltiples filas.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? param = null,
+            CommandType commandType = CommandType.Text)
         {
-            throw new NotImplementedException();
+            var (conn, tx, owns) = GetConnAndTx();
+            try
+            {
+                await OpenIfNeededAsync(conn);
+                return await conn.QueryAsync<T>
+                    (new CommandDefinition(sql, param, tx, commandType: commandType));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (owns)
+                {
+                    if (conn is DbConnection dbConn && dbConn.State != ConnectionState.Closed) await dbConn.CloseAsync();
+                    conn.Dispose();
+                }
+            }
         }
 
-        public Task<IEnumerable<T>> QueryAsync<T>(string sql, object? param = null, CommandType commandType = CommandType.Text)
+        /// <summary>
+        /// Ejecuta comandos que no devuelven datos (INSERT, UPDATE, DELETE).
+        /// Devuelve el número de filas afectadas.
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        public async Task<int> ExecuteAsync(string sql, object? param = null,
+            CommandType commandType = CommandType.Text)
         {
-            throw new NotImplementedException();
+            var (conn, tx, owns) = GetConnAndTx();
+            try
+            {
+                await OpenIfNeededAsync(conn);
+                return await conn.ExecuteAsync(new CommandDefinition(sql, param, tx, commandType: commandType));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (owns)
+                {
+                    if (conn is DbConnection dbConn && dbConn.State != ConnectionState.Closed) await dbConn.CloseAsync();
+                    conn.Dispose();
+                }
+            }
         }
 
-        public Task<T?> QueryFirstOrDefault<T>(string sql, object? param = null, CommandType commandType = CommandType.Text)
+        /// <summary>
+        /// Ejecuta un query y devuelve un valor escalar (ejemplo: el último ID insertado).
+        /// Hace Convert.ChangeType para castear el valor al tipo genérico T.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        public async Task<T> ExecuteScalarAsync<T>(string sql, object? param = null,
+            CommandType commandType = CommandType.Text)
         {
-            throw new NotImplementedException();
+            var (conn, tx, owns) = GetConnAndTx();
+            try
+            {
+                await OpenIfNeededAsync(conn);
+                var res = await conn.ExecuteScalarAsync(new CommandDefinition(sql, param, tx, commandType: commandType));
+                if (res == null || res == DBNull.Value) return default!;
+                return (T)Convert.ChangeType(res, typeof(T));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (owns)
+                {
+                    if (conn is DbConnection dbConn && dbConn.State != ConnectionState.Closed) await dbConn.CloseAsync();
+                    conn.Dispose();
+                }
+            }
         }
     }
+}
 }

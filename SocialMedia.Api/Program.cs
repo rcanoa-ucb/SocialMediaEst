@@ -29,15 +29,17 @@ namespace SocialMedia.Api
             builder.Services.AddDbContext<SocialMediaContext>(options =>
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
             #endregion
-            
+
             //Registrar los servicios
             //builder.Services.AddTransient<IPostRepository, PostRepository>();
             //builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddTransient<IPostService, PostService>();
             builder.Services.AddScoped
-                (typeof(IBaseRepository<>), 
+                (typeof(IBaseRepository<>),
                 (typeof(BaseRepository<>)));
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
+            builder.Services.AddScoped<IDapperContext, DapperContext>();
 
             builder.Services.AddControllers()
                 .AddNewtonsoftJson(

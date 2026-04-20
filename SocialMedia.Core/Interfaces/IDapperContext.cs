@@ -12,7 +12,7 @@ namespace SocialMedia.Core.Interfaces
             object? param = null,
             CommandType commandType = CommandType.Text);
 
-        Task<T?> QueryFirstOrDefault<T>(
+        Task<T?> QueryFirstOrDefaultAsync<T>(
             string sql,
             object? param = null,
             CommandType commandType = CommandType.Text);
