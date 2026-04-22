@@ -182,6 +182,18 @@ namespace SocialMedia.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet("dto/mapper/dapper")]
+        public async Task<IActionResult> GetPostsDtoMapperDapper
+            ([FromQuery] int limit = 10)
+        {
+            var posts = await _postService.GetAllPostsDapperAsync(limit);
+            var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
+
+            var response = new ApiResponse<IEnumerable<PostDto>>(postsDto);
+
+            return Ok(response);
+        }
+
         [HttpGet("dto/mapper/{id}")]
         public async Task<IActionResult> GetPostByIdDtoMapper(int id)
         {

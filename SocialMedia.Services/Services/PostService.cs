@@ -64,6 +64,11 @@ namespace SocialMedia.Services.Services
             return posts;
         }
 
+        public async Task<IEnumerable<Post>> GetAllPostsDapperAsync(int limit = 10)
+        {
+            return await _unitOfWork.PostRepository.GetAllPostDapperAsync();
+        }
+
         public async Task<Post> GetPostByIdAsync(int id)
         {
             return await _unitOfWork.PostRepository.GetById(id);

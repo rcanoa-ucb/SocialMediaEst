@@ -248,6 +248,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SocialMedia.Api.Controllers.PostController",
+    "Method": "GetPostsDtoMapperDapper",
+    "RelativePath": "api/Post/dto/mapper/dapper",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SocialMedia.Api.Controllers.TestController",
     "Method": "Get",
     "RelativePath": "api/test",
