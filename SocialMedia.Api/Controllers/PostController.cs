@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Api.Responses;
+using SocialMedia.Core.CustomEntities;
 using SocialMedia.Core.DTOs;
 using SocialMedia.Core.Entities;
 using SocialMedia.Core.Exceptions;
@@ -177,7 +178,20 @@ namespace SocialMedia.Api.Controllers
             var posts = await _postService.GetAllPostsAsync(filters);
             var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
 
-            var response = new ApiResponse<IEnumerable<PostDto>>(postsDto);
+            var pagination = new Pagination
+            {
+                TotalCount = posts.TotalCount,
+                PageSize = posts.PageSize,
+                CurrentePage = posts.CurrentPage,
+                TotalPages = posts.TotalPages,
+                HasNextPage = posts.HasNextPage,
+                HasPreviousPage = posts.HasPreviousPage
+            };
+
+            var response = new ApiResponse<IEnumerable<PostDto>>(postsDto)
+            {
+                Pagination = pagination
+            };
 
             return Ok(response);
         }

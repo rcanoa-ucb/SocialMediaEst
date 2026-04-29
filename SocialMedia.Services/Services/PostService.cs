@@ -1,4 +1,5 @@
-﻿using SocialMedia.Core.Entities;
+﻿using SocialMedia.Core.CustomEntities;
+using SocialMedia.Core.Entities;
 using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Helpers;
 using SocialMedia.Core.Interfaces;
@@ -30,7 +31,7 @@ namespace SocialMedia.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Post>> GetAllPostsAsync(
+        public async Task<PagedList<Post>> GetAllPostsAsync(
             PostQueryFilter? filters = null)
         {
             //return await _postRepository.GetAll();
@@ -61,7 +62,10 @@ namespace SocialMedia.Services.Services
                 }
             }
 
-            return posts;
+            var pagedPosts = PagedList<Post>
+                .Create(posts, filters.PageNumber, filters.PageSize);
+
+            return pagedPosts;
         }
 
         public async Task<IEnumerable<Post>> GetAllPostsDapperAsync(int limit = 10)
