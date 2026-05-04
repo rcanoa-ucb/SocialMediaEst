@@ -41,132 +41,132 @@ namespace SocialMedia.Api.Controllers
         }
 
         #region Sin DTOs
-        [HttpGet]
-        public async Task<IActionResult> GetPosts()
-        {
-            var posts = await _postService.GetAllPostsAsync();
-            return Ok(posts);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetPosts()
+        //{
+        //    var posts = await _postService.GetAllPostsAsync();
+        //    return Ok(posts);
+        //}
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetPostById(int id)
-        {
-            var post = await _postService.GetPostByIdAsync(id);
-            return Ok(post);
-        }
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetPostById(int id)
+        //{
+        //    var post = await _postService.GetPostByIdAsync(id);
+        //    return Ok(post);
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> InsertPost(Post post)
-        {
-            await _postService.InsertPost(post);
-            return Created($"api/post/{post.Id}", post);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> InsertPost(Post post)
+        //{
+        //    await _postService.InsertPost(post);
+        //    return Created($"api/post/{post.Id}", post);
+        //}
 
-        [HttpPut]
-        public async Task<IActionResult> UpdatePost(Post post)
-        {
-            _postService.UpdatePost(post);
-            return NoContent();
-        }
+        //[HttpPut]
+        //public async Task<IActionResult> UpdatePost(Post post)
+        //{
+        //    _postService.UpdatePost(post);
+        //    return NoContent();
+        //}
 
-        [HttpDelete]
-        public async Task<IActionResult> DeletePost(Post post)
-        {
-            await _postService.DeletePost(post.Id);
-            return NoContent();
-        }
+        //[HttpDelete]
+        //public async Task<IActionResult> DeletePost(Post post)
+        //{
+        //    await _postService.DeletePost(post.Id);
+        //    return NoContent();
+        //}
         #endregion
 
         #region Con Dtos
-        [HttpGet("dto")]
-        public async Task<IActionResult> GetDtoPosts()
-        {
-            var posts = await _postService.GetAllPostsAsync();
-            var postsDto = posts.Select(p => new PostDto
-            {
-                Id = p.Id,
-                UserId = p.UserId,
-                Date = p.Date.ToString("dd-MM-yyyy"),
-                Description = p.Description,
-                Image = p.Imagen
-            });
+        //[HttpGet("dto")]
+        //public async Task<IActionResult> GetDtoPosts()
+        //{
+        //    var posts = await _postService.GetAllPostsAsync();
+        //    var postsDto = posts.Select(p => new PostDto
+        //    {
+        //        Id = p.Id,
+        //        UserId = p.UserId,
+        //        Date = p.Date.ToString("dd-MM-yyyy"),
+        //        Description = p.Description,
+        //        Image = p.Imagen
+        //    });
 
 
-            return Ok(postsDto);
-        }
+        //    return Ok(postsDto);
+        //}
 
-        [HttpGet("dto/{id}")]
-        public async Task<IActionResult> GetDtoPostById(int id)
-        {
-            var post = await _postService.GetPostByIdAsync(id);
-            var postDto = new PostDto
-            {
-                Id = post.Id,
-                UserId = post.UserId,
-                Date = post.Date.ToString("dd-MM-yyyy HH:mm:ss"),
-                Description = post.Description,
-                Image = post.Imagen
-            };
-            return Ok(postDto);
-        }
+        //[HttpGet("dto/{id}")]
+        //public async Task<IActionResult> GetDtoPostById(int id)
+        //{
+        //    var post = await _postService.GetPostByIdAsync(id);
+        //    var postDto = new PostDto
+        //    {
+        //        Id = post.Id,
+        //        UserId = post.UserId,
+        //        Date = post.Date.ToString("dd-MM-yyyy HH:mm:ss"),
+        //        Description = post.Description,
+        //        Image = post.Imagen
+        //    };
+        //    return Ok(postDto);
+        //}
 
-        [HttpPost("dto")]
-        public async Task<IActionResult> InsertDtoPost(PostDto postDto)
-        {
-            var post = new Post
-            {
-                Id = postDto.Id,
-                UserId = postDto.UserId,
-                Date = Convert.ToDateTime(postDto.Date),
-                Description = postDto.Description,
-                Imagen = postDto.Image
-            };
+        //[HttpPost("dto")]
+        //public async Task<IActionResult> InsertDtoPost(PostDto postDto)
+        //{
+        //    var post = new Post
+        //    {
+        //        Id = postDto.Id,
+        //        UserId = postDto.UserId,
+        //        Date = Convert.ToDateTime(postDto.Date),
+        //        Description = postDto.Description,
+        //        Imagen = postDto.Image
+        //    };
 
-            await _postService.InsertPost(post);
-            return Created($"api/post/{post.Id}", post);
-        }
+        //    await _postService.InsertPost(post);
+        //    return Created($"api/post/{post.Id}", post);
+        //}
 
-        [HttpPut("dto/{id}")]
-        public async Task<IActionResult> UpdateDtoPost
-            (int id, [FromBody]PostDto postDto)
-        {
-            if (id != postDto.Id)
-                return BadRequest("El ID del post no coincide");
+        //[HttpPut("dto/{id}")]
+        //public async Task<IActionResult> UpdateDtoPost
+        //    (int id, [FromBody]PostDto postDto)
+        //{
+        //    if (id != postDto.Id)
+        //        return BadRequest("El ID del post no coincide");
 
-            var post = await _postService.GetPostByIdAsync(id);
-            if (post == null)
-                return NotFound("Post no encontrado");
+        //    var post = await _postService.GetPostByIdAsync(id);
+        //    if (post == null)
+        //        return NotFound("Post no encontrado");
 
-            //Mapear valor del DTO a la entidad
-            post.UserId = postDto.UserId;
-            post.Date = Convert.ToDateTime(postDto.Date);
-            post.Description = postDto.Description;
-            post.Imagen = postDto.Image;
+        //    //Mapear valor del DTO a la entidad
+        //    post.UserId = postDto.UserId;
+        //    post.Date = Convert.ToDateTime(postDto.Date);
+        //    post.Description = postDto.Description;
+        //    post.Imagen = postDto.Image;
 
-            //var postDtoInsert = new Post
-            //{
-            //    Id = postDto.Id,
-            //    UserId = postDto.UserId,
-            //    Date = Convert.ToDateTime(postDto.Date),
-            //    Description = postDto.Description,
-            //    Imagen = postDto.Image
-            //};
+        //    //var postDtoInsert = new Post
+        //    //{
+        //    //    Id = postDto.Id,
+        //    //    UserId = postDto.UserId,
+        //    //    Date = Convert.ToDateTime(postDto.Date),
+        //    //    Description = postDto.Description,
+        //    //    Imagen = postDto.Image
+        //    //};
 
-            _postService.UpdatePost(post);
-            return NoContent();
-        }
+        //    _postService.UpdatePost(post);
+        //    return NoContent();
+        //}
 
-        [HttpDelete("dto/{id}")]
-        public async Task<IActionResult> DeleteDtoPost
-            (int id)
-        {
-            var post = await _postService.GetPostByIdAsync(id);
-            if (post == null)
-                return NotFound("Post no encontrado");
+        //[HttpDelete("dto/{id}")]
+        //public async Task<IActionResult> DeleteDtoPost
+        //    (int id)
+        //{
+        //    var post = await _postService.GetPostByIdAsync(id);
+        //    if (post == null)
+        //        return NotFound("Post no encontrado");
 
-            await _postService.DeletePost(post.Id);
-            return NoContent();
-        }
+        //    await _postService.DeletePost(post.Id);
+        //    return NoContent();
+        //}
         #endregion
 
         #region Con Dto Mapper
@@ -176,24 +176,26 @@ namespace SocialMedia.Api.Controllers
             [FromQuery] PostQueryFilter? filters)
         {
             var posts = await _postService.GetAllPostsAsync(filters);
-            var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts);
+            var postsDto = _mapper.Map<IEnumerable<PostDto>>(posts.Pagination);
 
             var pagination = new Pagination
             {
-                TotalCount = posts.TotalCount,
-                PageSize = posts.PageSize,
-                CurrentePage = posts.CurrentPage,
-                TotalPages = posts.TotalPages,
-                HasNextPage = posts.HasNextPage,
-                HasPreviousPage = posts.HasPreviousPage
+                TotalCount = posts.Pagination.TotalCount,
+                PageSize = posts.Pagination.PageSize,
+                CurrentePage = posts.Pagination.CurrentPage,
+                TotalPages = posts.Pagination.TotalPages,
+                HasNextPage = posts.Pagination.HasNextPage,
+                HasPreviousPage = posts.Pagination.HasPreviousPage
             };
 
             var response = new ApiResponse<IEnumerable<PostDto>>(postsDto)
             {
-                Pagination = pagination
+                Pagination = pagination,
+                Messages = posts.Messages
             };
 
-            return Ok(response);
+            return StatusCode((int)posts.StatusCode, response);
+                // Ok(response);
         }
 
         [HttpGet("dto/mapper/dapper")]

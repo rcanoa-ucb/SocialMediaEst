@@ -1,5 +1,6 @@
 ﻿using SocialMedia.Core.CustomEntities;
 using SocialMedia.Core.Entities;
+using SocialMedia.Core.Enum;
 using SocialMedia.Core.Exceptions;
 using SocialMedia.Core.Helpers;
 using SocialMedia.Core.Interfaces;
@@ -31,7 +32,7 @@ namespace SocialMedia.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<PagedList<Post>> GetAllPostsAsync(
+        public async Task<ResponseData> GetAllPostsAsync(
             PostQueryFilter? filters = null)
         {
             //return await _postRepository.GetAll();
@@ -62,10 +63,28 @@ namespace SocialMedia.Services.Services
                 }
             }
 
-            var pagedPosts = PagedList<Post>
+            var pagedPosts = PagedList<object>
                 .Create(posts, filters.PageNumber, filters.PageSize);
 
-            return pagedPosts;
+            if (pagedPosts.Any())
+            {
+                return new ResponseData()
+                {
+                    Messages = new Message[] { new() { Type = TypeMessage.success.ToString(),
+                        Description = "Registros de posts recuperados correctamente" } },
+                    Pagination = pagedPosts,
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
+            else
+            {
+                return new ResponseData()
+                {
+                    Messages = new Message[] { new() { Type = TypeMessage.warning.ToString(), Description = "No fue posible recuperar la cantidad de registros" } },
+                    Pagination = pagedPosts,
+                    StatusCode = HttpStatusCode.NotFound
+                };
+            }
         }
 
         public async Task<IEnumerable<Post>> GetAllPostsDapperAsync(int limit = 10)
