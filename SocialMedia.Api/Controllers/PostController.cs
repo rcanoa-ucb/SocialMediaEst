@@ -172,26 +172,21 @@ namespace SocialMedia.Api.Controllers
 
         #region Con Dto Mapper
         /// <summary>
-        /// Recupera una lista paginada de publicaciones como objetos de trasferencia de datos (DTO) segun los filtros especificados
+        /// Recupera una lista paginada de publicaciones como objetos de transferencia de datos (DTO) según los filtros especificados.
         /// </summary>
-        /// <remarks>
-        /// Este metodo utiliza una mappeador para convertir publicaciones recuperadas en DTO que luego se devuelven junto con la informacion. Si se produce un error se envia un estado 500
-        /// </remarks>
-        /// <param name="filters">Los filtros que se aplican al recuperar publicaciones</param>
-        /// <returns>Un <see cref="IActionResult"/> 
-        /// que contiene un <see cref="ApiResponse{T}/">
-        /// con una collección de objetos
-        /// <see cref="PostDto"/> y detalles de la paginacion.
-        /// </returns>
+        /// <remarks>Este método utiliza un mapeador para convertir las publicaciones recuperadas en DTO, que luego se 
+        /// devuelven junto con la información de paginación. Si se produce un error durante el proceso, se devuelve un 
+        /// código de estado 500 con los detalles del error.<see cref="ApiResponse{T}"/></remarks>
+        /// <param name="filters">Los filtros que se aplicarán al recuperar publicaciones, como la paginación y los criterios de búsqueda.</param>
+        /// <param name="idPost">Los filtros que se aplicarán al recuperar publicaciones, como la paginación y los criterios de búsqueda.</param>
+        /// <returns>Un <see cref="IActionResult"/> que contiene un <see cref="ApiResponse{T}"/> con una colección de objetos <see cref="PostDto"/> 
+        /// y detalles de paginación.</returns>
         /// <response code="200">Retorna la lista de [PostDto]</response>
-        /// <response code="500">Error Interno del servidor</response>
-        /// <response code="404">No existen registros</response>
-        [ProducesResponseType(
-            (int)HttpStatusCode.OK, 
-            Type = typeof(ApiResponse<IEnumerable<PostDto>>))]
+        /// <response code="500">Error interno del servidor</response>
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(ApiResponse<IEnumerable<PostDto>>))]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        [Produces("application/json")]
         [HttpGet("dto/mapper")]
         //?userId=10 & Date = '10-01-2026' & param = 15
         public async Task<IActionResult> GetPostsDtoMapper(
