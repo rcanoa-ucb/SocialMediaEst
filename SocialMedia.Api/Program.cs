@@ -53,6 +53,30 @@ namespace SocialMedia.Api
                 options.SuppressModelStateInvalidFilter = true;
              });
 
+            //Configurar Swagger
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new()
+                {
+                    Title = "Backend Social Media API",
+                    Version = "v1",
+                    Description = "Documentación de la API de Social Media .NET 9",
+                    Contact = new()
+                    {
+                        Name = "Equipo de desarrollo UCB",
+                        Email = "desarrollo@ucb.edu.bo"
+                    }
+                });
+
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+
+                //configurar los parametros de objeto
+                options.EnableAnnotations();
+            });
+
             //Registra el profile del automapper para el Post
             builder.Services.AddAutoMapper(typeof(PostProfile).Assembly);
 
@@ -65,6 +89,17 @@ namespace SocialMedia.Api
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
+
+            //Usar Swagger
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Backend Social Media API v1");
+                    options.RoutePrefix = string.Empty; //Swagger sera accesible en la raíz
+                });
+            }
 
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 

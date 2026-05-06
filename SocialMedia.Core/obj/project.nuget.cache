@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Qf3j6eF7xEU=",
+  "dgSpecHash": "xgPR3fdEMGo=",
   "success": true,
   "projectFilePath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Core\\SocialMedia.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Developer\\.nuget\\packages\\microsoft.openapi\\1.6.25\\microsoft.openapi.1.6.25.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\9.0.6\\swashbuckle.aspnetcore.annotations.9.0.6.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\9.0.6\\swashbuckle.aspnetcore.swagger.9.0.6.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\9.0.6\\swashbuckle.aspnetcore.swaggergen.9.0.6.nupkg.sha512"
+  ],
   "logs": []
 }

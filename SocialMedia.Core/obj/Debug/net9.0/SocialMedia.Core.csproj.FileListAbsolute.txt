@@ -33,3 +33,4 @@ C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\Socia
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\refint\SocialMedia.Core.dll
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.pdb
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\ref\SocialMedia.Core.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Core\obj\Debug\net9.0\SocialMedia.Core.csproj.AssemblyReference.cache

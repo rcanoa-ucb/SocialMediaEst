@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eMjo9Co61vw=",
+  "dgSpecHash": "EVM3n6oP3p8=",
   "success": true,
   "projectFilePath": "C:\\Training\\Ucb\\2026\\SocialMedia-Student\\SocialMedia.Infrastructure\\SocialMedia.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -48,11 +48,15 @@
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.35.0\\microsoft.identitymodel.tokens.6.35.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\microsoft.openapi\\1.6.25\\microsoft.openapi.1.6.25.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\mysqlconnector\\2.4.0\\mysqlconnector.2.4.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\9.0.0\\pomelo.entityframeworkcore.mysql.9.0.0.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\9.0.6\\swashbuckle.aspnetcore.annotations.9.0.6.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\9.0.6\\swashbuckle.aspnetcore.swagger.9.0.6.nupkg.sha512",
+    "C:\\Users\\Developer\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\9.0.6\\swashbuckle.aspnetcore.swaggergen.9.0.6.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\system.clientmodel\\1.0.0\\system.clientmodel.1.0.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\Developer\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",

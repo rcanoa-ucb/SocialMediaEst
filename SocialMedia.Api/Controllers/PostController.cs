@@ -13,6 +13,7 @@ using SocialMedia.Core.Interfaces;
 using SocialMedia.Core.QueryFilters;
 using SocialMedia.Services.Interfaces;
 using SocialMedia.Services.Validators;
+using System.Net;
 
 namespace SocialMedia.Api.Controllers
 {
@@ -170,6 +171,27 @@ namespace SocialMedia.Api.Controllers
         #endregion
 
         #region Con Dto Mapper
+        /// <summary>
+        /// Recupera una lista paginada de publicaciones como objetos de trasferencia de datos (DTO) segun los filtros especificados
+        /// </summary>
+        /// <remarks>
+        /// Este metodo utiliza una mappeador para convertir publicaciones recuperadas en DTO que luego se devuelven junto con la informacion. Si se produce un error se envia un estado 500
+        /// </remarks>
+        /// <param name="filters">Los filtros que se aplican al recuperar publicaciones</param>
+        /// <returns>Un <see cref="IActionResult"/> 
+        /// que contiene un <see cref="ApiResponse{T}/">
+        /// con una collección de objetos
+        /// <see cref="PostDto"/> y detalles de la paginacion.
+        /// </returns>
+        /// <response code="200">Retorna la lista de [PostDto]</response>
+        /// <response code="500">Error Interno del servidor</response>
+        /// <response code="404">No existen registros</response>
+        [ProducesResponseType(
+            (int)HttpStatusCode.OK, 
+            Type = typeof(ApiResponse<IEnumerable<PostDto>>))]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [Produces("application/json")]
         [HttpGet("dto/mapper")]
         //?userId=10 & Date = '10-01-2026' & param = 15
         public async Task<IActionResult> GetPostsDtoMapper(

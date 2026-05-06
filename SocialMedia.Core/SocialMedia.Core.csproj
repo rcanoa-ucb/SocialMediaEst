@@ -10,4 +10,8 @@
     <Compile Remove="Interfaces\IUserRepository.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="9.0.6" />
+  </ItemGroup>
+
 </Project>
