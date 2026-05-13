@@ -19,6 +19,7 @@ namespace SocialMedia.Infrastructure.Repositories
         private readonly IPostRepository? _postRepository;
         private readonly IBaseRepository<User>? _userRepository;
         private readonly IBaseRepository<Comment>? _commentRepository;
+        private readonly ISecurityRepository _securityRepository;
 
         private readonly IDapperContext _dapper;
         private IDbContextTransaction? _efTransaction;
@@ -42,6 +43,9 @@ namespace SocialMedia.Infrastructure.Repositories
 
         public IBaseRepository<Comment> CommentRepository => 
             _commentRepository ?? new BaseRepository<Comment>(_context);
+
+        public ISecurityRepository SecurityRepository =>
+            _securityRepository ?? new SecurityRepository(_context);
 
         public async Task BeginTransactionAsync()
         {

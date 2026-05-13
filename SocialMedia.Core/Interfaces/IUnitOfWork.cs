@@ -13,6 +13,8 @@ namespace SocialMedia.Core.Interfaces
         IPostRepository PostRepository { get; }
         IBaseRepository<User> UserRepository { get; }
         IBaseRepository<Comment> CommentRepository { get; }
+        ISecurityRepository SecurityRepository { get; }
+
         void SaveChanges();
         Task SaveChangesAsync();
 
