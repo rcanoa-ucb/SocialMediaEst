@@ -541,3 +541,4 @@ C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Swashb
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\SocialMedia.Api.xml
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\obj\Debug\net9.0\SocialMedia.Api.xml
 C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Training\Ucb\2026\SocialMedia-Student\SocialMedia.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

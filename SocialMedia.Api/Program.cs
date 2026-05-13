@@ -1,5 +1,7 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SocialMedia.Api.Filters;
 using SocialMedia.Core.Interfaces;
 using SocialMedia.Infrastructure.Data;
@@ -77,6 +79,50 @@ namespace SocialMedia.Api
                 options.EnableAnnotations();
             });
 
+            //Configurar JWT
+            builder.Services.AddAuthentication(options =>
+            {
+                //Esquema por defecto para autenticar (identificar quien es el usuario)
+                //Se va usar JWT Bearer como estándar
+                options.DefaultAuthenticateScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+
+                //si alguien intenta acceder si entar autenticado, se tiene que bloquear
+                options.DefaultChallengeScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters =
+                new TokenValidationParameters
+                {
+                    //Valida el Emisor (iss) > Verifica que el token haya
+                    //sido emitido por un servidor de confianza, Evitar que alguien use
+                    //Tokens creados por otros sistemas
+                    ValidateIssuer = true,
+
+                    //Verifica que el token este dirigido a una API en particular
+                    //un servicio de frontend, un cliente
+                    ValidateAudience = true,
+
+                    //Comprueba que el token no haya expirado
+                    ValidateLifetime = true,
+
+                    //Verifica que el token no haya sido modificada
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = builder.Configuration["Authentication:Issuer"],
+                    ValidAudience = builder.Configuration["Authentication:Audience"],
+
+                    //Clave simétrica, esta misma sirve para firmar y verificar
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        System.Text.Encoding.UTF8.GetBytes(
+                            builder.Configuration["Authentication:SecretKey"])
+                    )
+                };
+            });
+
+
             //Registra el profile del automapper para el Post
             builder.Services.AddAutoMapper(typeof(PostProfile).Assembly);
 
@@ -111,8 +157,8 @@ namespace SocialMedia.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

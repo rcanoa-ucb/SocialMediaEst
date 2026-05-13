@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Azure;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -187,6 +188,7 @@ namespace SocialMedia.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [Authorize]
         [HttpGet("dto/mapper")]
         //?userId=10 & Date = '10-01-2026' & param = 15
         public async Task<IActionResult> GetPostsDtoMapper(
